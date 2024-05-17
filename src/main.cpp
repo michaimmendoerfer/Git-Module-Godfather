@@ -1,20 +1,18 @@
-#define NODE_NAME "Monitor-2"
-#define NODE_TYPE MONITOR_ROUND
+#define NODE_NAME "Monitor-1"
+#define NODE_TYPE MONITOR_BIG
 //#define KILL_NVS 1
 
 const char *_Version = "V 3.41";
-const char *_Name = "Monitor 2";
+const char *_Name = "Monitor 1";
 const char _Protokoll_Version[] = "1.01";
 
 #pragma region Includes
 #include <Arduino.h>
 #include "Jeepify.h"
 #include "main.h"
-#include <TFT_eSPI.h>
 #include <esp_now.h>
 #include <WiFi.h>
 #include <ArduinoJson.h>
-#include "CST816D.h"
 #include "pref_manager.h"
 #include "PeerClass.h"
 #include "LinkedList.h"
@@ -23,18 +21,37 @@ const char _Protokoll_Version[] = "1.01";
 #include "Ui\ui_events.h" 
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
+#include <esp32_smartdisplay.h>
+#include <nvs_flash.h>
+#include <Wire.h>
+#include <Spi.h>
+
+
+#define u8 unsigned char
 #pragma endregion Includes
 
-#define TFT_HOR_RES   240
-#define TFT_VER_RES   240
-#define DRAW_BUF_SIZE (TFT_HOR_RES * TFT_VER_RES / 10 * (LV_COLOR_DEPTH / 8))
+#pragma region I2C_BUS
+#define I2C_FREQ 400000
+#define ADS_ADDRESS  0x48
+#define PORT_ADDRESS 0x20
 
-TFT_eSPI tft = TFT_eSPI(TFT_HOR_RES, TFT_VER_RES); /* TFT instance */
-CST816D Touch(I2C_SDA, I2C_SCL, TP_RST, TP_INT);
+#ifdef ADS_USED
+    #include <Adafruit_ADS1X15.h>
+    Adafruit_ADS1115 ADSBoard;
+#endif
+
+#ifdef PORT_USED
+    #include "PCF8575.h"
+    PCF8575 IOBoard(PORT_ADDRESS, SDA_PIN, SCL_PIN);
+#endif
+#pragma endregion I2C_BUS
+
+#define PAIRING_BUTTON 9
+#define LED_PIN         8
+#define LED_OFF         HIGH
+#define LED_ON          LOW
 
 #pragma region Globals
-static lv_disp_draw_buf_t draw_buf;
-static lv_color_t buf1[ TFT_HOR_RES * TFT_VER_RES / 10 ];
 
 int PeerCount;
 Preferences preferences;
@@ -128,8 +145,11 @@ String processor(const String& var)
 {
     char Buf[10];
     
-    if (var == "TYPE")        if (ActiveWebPeriph) return "text";
+    if (var == "TYPE")        
+    {
+            if (ActiveWebPeriph) return "text";
                               else return "hidden";
+    }
     if (var == "PeerName")    return ActiveWebPeer->GetName();
     if (var == "PeriphName")  if (ActiveWebPeriph) return ActiveWebPeriph->GetName();
     if (var == "Nullwert")    if (ActiveWebPeriph) { dtostrf(ActiveWebPeriph->GetNullwert(), 0, 3, Buf); return String(Buf); }
@@ -433,7 +453,7 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len)
         if (P)      // Peer bekannt
         { 
             P->SetTSLastSeen(millis());
-            if (Self.GetDebugMode()) Serial.printf("bekannter Node: %s - LastSeen at %d", P->GetName(), P->GetTSLastSeen());
+            if (Self.GetDebugMode()) Serial.printf("bekannter Node: %s - LastSeen at %d\n\r", P->GetName(), P->GetTSLastSeen());
             
             if (Order == SEND_CMD_PAIR_ME) 
             // check or init names
@@ -501,6 +521,7 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len)
                             P->SetPeriphValue(i, TempSensor);
                             P->SetPeriphChanged(i, true);
                         }
+                        else P->SetPeriphChanged(i,false);
                     }
 
                     if (doc.containsKey("Status")) 
@@ -541,40 +562,19 @@ void setup()
         delay(3000);
     #endif
     
-    Serial.begin(460800);
+    Serial.begin(115200);
     
-    Self.Setup(_Name, MONITOR_ROUND, _Version, broadcastAddressAll, false, true, false, false);
+    #ifdef KILL_NVS
+        nvs_flash_erase(); nvs_flash_init(); ESP.restart();
+        while(1)
+        {}
+    #endif
+
+    Self.Setup(_Name, MONITOR_BIG, _Version, broadcastAddressAll, false, true, false, false);
     
-    //TFT & LVGL
-    tft.init();
-    tft.setRotation(0);
-    tft.setSwapBytes(true);
-    tft.begin();
-    Touch.begin();
-      
-    lv_init();
-    
-    lv_disp_draw_buf_init( &draw_buf, buf1, NULL, TFT_HOR_RES * TFT_VER_RES / 10 );
-
-    //Display-Driver
-    static lv_disp_drv_t disp_drv;
-    lv_disp_drv_init( &disp_drv );
-    disp_drv.hor_res = TFT_HOR_RES;
-    disp_drv.ver_res = TFT_VER_RES;
-    disp_drv.flush_cb = my_disp_flush;
-    disp_drv.draw_buf = &draw_buf;
-    lv_disp_drv_register( &disp_drv );
-
-    //Touch-Driver
-    static lv_indev_drv_t indev_drv;
-    lv_indev_drv_init( &indev_drv );
-    indev_drv.type = LV_INDEV_TYPE_POINTER;
-    indev_drv.read_cb = my_touchpad_read;
-    lv_indev_drv_register( &indev_drv );
-
     WiFi.mode(WIFI_AP_STA);
     //ESP-Now
-    InitWebServer();
+    /*InitWebServer();
     if (WebServerActive) 
     {
             ActiveWebPeer = PeerList.get(0);
@@ -582,7 +582,7 @@ void setup()
             server.begin();
     }
     //WiFi.mode(WIFI_AP);
-    
+    */
     if (esp_now_init() != ESP_OK) { Serial.println("Error initializing ESP-NOW"); return; }
 
     esp_now_register_send_cb(OnDataSent);
@@ -599,10 +599,20 @@ void setup()
     RegisterPeers();
     ReportAll();
   
-    static uint32_t user_data = 10;
-    lv_timer_t * TimerPing = lv_timer_create(SendPing, PING_INTERVAL,  &user_data);
+    smartdisplay_init();
+    Serial.println("smartdisp.init fertig");
+
+__attribute__((unused)) auto disp = lv_disp_get_default();
+    lv_disp_set_rotation(disp, LV_DISP_ROT_90);
+    
+    Serial.println("disp.init fertig");
 
     ui_init(); 
+
+    static uint32_t user_data = 10;
+    lv_timer_t *TimerPing = lv_timer_create(SendPing, PING_INTERVAL,  &user_data);
+
+    Serial.println("Setup fertig");
 }
 void loop() 
 {
@@ -684,6 +694,11 @@ bool ToggleSwitch(PeriphClass *Periph)
 {
     JsonDocument doc; String jsondata; 
     
+    if (Periph->GetValue() == 1) Periph->SetValue(0);
+    else Periph->SetValue(1);
+
+    Periph->SetChanged(true);
+
     doc["from"]  = NODE_NAME;   
     doc["Order"] = SEND_CMD_SWITCH_TOGGLE;
     doc["Value"] = Periph->GetName();
@@ -812,33 +827,6 @@ void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
         }
     }
 }
-void my_disp_flush( lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color_p )
-{
-    uint32_t w = ( area->x2 - area->x1 + 1 );
-    uint32_t h = ( area->y2 - area->y1 + 1 );
 
-    tft.startWrite();
-    tft.setAddrWindow( area->x1, area->y1, w, h );
-    tft.pushColors( ( uint16_t * )&color_p->full, w * h, true );
-    tft.endWrite();
-
-    lv_disp_flush_ready( disp );
-}
-void my_touchpad_read( lv_indev_drv_t * indev_driver, lv_indev_data_t * data ) {
-    uint16_t touchX, touchY;
-    uint8_t  Gesture;
-
-    bool touched = Touch.getTouch( &touchX, &touchY, &Gesture);
-
-    if( !touched ) {
-        data->state = LV_INDEV_STATE_RELEASED;
-    }
-    else {
-        data->state = LV_INDEV_STATE_PRESSED;
-
-        data->point.x = TFT_HOR_RES - touchX;
-        data->point.y = touchY;
-    }
-}
 #pragma endregion Other
 //

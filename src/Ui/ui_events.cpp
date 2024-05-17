@@ -36,6 +36,8 @@ lv_timer_t *MultiTimer;
 lv_timer_t *SwitchTimer;
 lv_timer_t *SettingsTimer;
 
+bool SpinnerSwitchVisible = false;
+
 LV_IMG_DECLARE(ui_img_btn_off_png);   
 LV_IMG_DECLARE(ui_img_btn_png);      
 
@@ -245,7 +247,7 @@ void Ui_Peers_Selected(lv_event_t * e)
 
 	if ((TempPeer) and (strcmp(SelectedName, "") != 0)) {
 		ActivePeer = TempPeer;
-		_ui_screen_change(&ui_ScrPeer, LV_SCR_LOAD_ANIM_FADE_ON, 50, 0, &ui_ScrPeer_screen_init);
+		_ui_screen_change(&ui_ScrPeer, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrPeer_screen_init);
 	}
 }
 #pragma endregion Screen_Peers
@@ -265,7 +267,7 @@ void Ui_Single_Next(lv_event_t * e)
 	
 	if (ActivePeriphSingle)
 	{
-		_ui_screen_change(&ui_ScrSingle, LV_SCR_LOAD_ANIM_NONE, 50, 0, &ui_ScrSingle_screen_init);
+		_ui_screen_change(&ui_ScrSingle, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrSingle_screen_init);
 	}
 }
 
@@ -278,7 +280,7 @@ void Ui_Single_Last(lv_event_t * e)
 	
 	if (ActivePeriphSingle)
 	{
-		_ui_screen_change(&ui_ScrSingle, LV_SCR_LOAD_ANIM_NONE, 50, 0, &ui_ScrSingle_screen_init);
+		_ui_screen_change(&ui_ScrSingle, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrSingle_screen_init);
 	}
 }
 
@@ -333,6 +335,9 @@ void SingleUpdateTimer(lv_timer_t * timer)
 	
 	if (ActivePeriphSingle)
 	{
+		lv_label_set_text(ui_LblSinglePeriph, ActivePeriphSingle->GetName());
+		lv_label_set_text(ui_LblSinglePeer, FindPeerById(ActivePeriphSingle->GetPeerId())->GetName());
+		
 		value = ActivePeriphSingle->GetValue();
 		//if (DebugMode) Serial.printf("Sensor: %s: %f\n", ActiveSens->Name, value);
 
@@ -348,6 +353,11 @@ void SingleUpdateTimer(lv_timer_t * timer)
 		
 		lv_meter_set_indicator_value(SingleMeter, SingleIndicNeedle, value*10);
 		lv_label_set_text(ui_LblSingleValue, buf);
+	}
+	else
+	{
+		lv_label_set_text(ui_LblSinglePeriph, "n.n.");
+		lv_label_set_text(ui_LblSinglePeer, "n.n.");
 	}
 }
 
@@ -618,7 +628,7 @@ void Ui_Multi_Button_Clicked(lv_event_t * e)
 	
 		MultiPosToChange = atoi(lv_label_get_text(Button));
 
-		_ui_screen_change(&ui_ScrPeriph, LV_SCR_LOAD_ANIM_NONE, 0, 0, &ui_ScrPeriph_screen_init);
+		_ui_screen_change(&ui_ScrPeriph, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrPeriph_screen_init);
     }
 }
 void Ui_Multi_Sensor_Clicked(lv_event_t * e)
@@ -633,14 +643,14 @@ void Ui_Multi_Sensor_Clicked(lv_event_t * e)
 		ActivePeriph = Screen[ActiveMultiScreen].GetPeriph(Pos);
 		ActivePeer   = Screen[ActiveMultiScreen].GetPeer(Pos);
 		
-		_ui_screen_change(&ui_ScrSingle, LV_SCR_LOAD_ANIM_FADE_ON, 50, 0, &ui_ScrSingle_screen_init);
+		_ui_screen_change(&ui_ScrSingle, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrSingle_screen_init);
     }	
 	if(event_code == LV_EVENT_LONG_PRESSED) {
         lv_obj_t *Button = ui_comp_get_child(target, UI_COMP_BUTTONSWITCHSMALL_LBLPOSITION);
 	
 		MultiPosToChange = atoi(lv_label_get_text(Button));
 
-		_ui_screen_change(&ui_ScrPeriph, LV_SCR_LOAD_ANIM_NONE, 0, 0, &ui_ScrPeriph_screen_init);
+		_ui_screen_change(&ui_ScrPeriph, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrPeriph_screen_init);
     }
 }
 void Ui_Multi_Set_Panel1(lv_event_t * e)
@@ -648,7 +658,7 @@ void Ui_Multi_Set_Panel1(lv_event_t * e)
 	if (PeriphList.size() > 0) 
 	{
 		MultiPosToChange = 0;
-		_ui_screen_change(&ui_ScrPeriph, LV_SCR_LOAD_ANIM_NONE, 0, 0, &ui_ScrPeriph_screen_init);
+		_ui_screen_change(&ui_ScrPeriph, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrPeriph_screen_init);
 	}
 }
 void Ui_Multi_Set_Panel2(lv_event_t * e)
@@ -656,7 +666,7 @@ void Ui_Multi_Set_Panel2(lv_event_t * e)
 	if (PeriphList.size() > 0) 
 	{
 		MultiPosToChange = 1;
-		_ui_screen_change(&ui_ScrPeriph, LV_SCR_LOAD_ANIM_NONE, 0, 0, &ui_ScrPeriph_screen_init);
+		_ui_screen_change(&ui_ScrPeriph, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrPeriph_screen_init);
 	}
 }
 void Ui_Multi_Set_Panel3(lv_event_t * e)
@@ -664,7 +674,7 @@ void Ui_Multi_Set_Panel3(lv_event_t * e)
 	if (PeriphList.size() > 0) 
 	{
 		MultiPosToChange = 2;
-		_ui_screen_change(&ui_ScrPeriph, LV_SCR_LOAD_ANIM_NONE, 0, 0, &ui_ScrPeriph_screen_init);
+		_ui_screen_change(&ui_ScrPeriph, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrPeriph_screen_init);
 	}
 }
 void Ui_Multi_Set_Panel4(lv_event_t * e)
@@ -672,7 +682,7 @@ void Ui_Multi_Set_Panel4(lv_event_t * e)
 	if (PeriphList.size() > 0) 
 	{
 		MultiPosToChange = 3;
-		_ui_screen_change(&ui_ScrPeriph, LV_SCR_LOAD_ANIM_NONE, 0, 0, &ui_ScrPeriph_screen_init);
+		_ui_screen_change(&ui_ScrPeriph, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrPeriph_screen_init);
 	}
 }
 void Ui_Multi_Unload(lv_event_t * e)
@@ -694,13 +704,13 @@ void Ui_Multi_Next(lv_event_t * e)
 {
 	ActiveMultiScreen++;
 	if (ActiveMultiScreen == MULTI_SCREENS) ActiveMultiScreen = 0;
-	_ui_screen_change(&ui_ScrMulti, LV_SCR_LOAD_ANIM_NONE, 50, 0, &ui_ScrMulti_screen_init);
+	_ui_screen_change(&ui_ScrMulti, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrMulti_screen_init);
 }
 void Ui_Multi_Prev(lv_event_t * e)
 {
 	ActiveMultiScreen--;
 	if (ActiveMultiScreen == -1) ActiveMultiScreen = MULTI_SCREENS-1;
-	_ui_screen_change(&ui_ScrMulti, LV_SCR_LOAD_ANIM_NONE, 50, 0, &ui_ScrMulti_screen_init);
+	_ui_screen_change(&ui_ScrMulti, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrMulti_screen_init);
 }
 #pragma endregion Screen_MultiMeter
 #pragma region Screen_Switch
@@ -709,11 +719,16 @@ void SwitchUpdateTimer(lv_timer_t * timer)
 	if (ActivePeriphSwitch){
 		if (ActivePeriphSwitch->GetValue() == 1)
 		{
-			lv_obj_set_style_bg_img_src(ui_ScrSwitch, &ui_img_btn_png, LV_PART_MAIN | LV_STATE_DEFAULT);
+			lv_imgbtn_set_state(ui_ImgButtonSwitch, LV_IMGBTN_STATE_CHECKED_RELEASED);
 		}
 		else
 		{
-			lv_obj_set_style_bg_img_src(ui_ScrSwitch, &ui_img_btn_off_png, LV_PART_MAIN | LV_STATE_DEFAULT);
+			lv_imgbtn_set_state(ui_ImgButtonSwitch, LV_IMGBTN_STATE_RELEASED);
+		}
+		
+		if (ActivePeriphSwitch->GetChanged() == false)
+		{
+			lv_obj_add_flag(ui_SpinnerSwitch, LV_OBJ_FLAG_HIDDEN);
 		}
 	}
 }
@@ -726,12 +741,13 @@ void Ui_Switch_Next(lv_event_t * e)
 	
 	if (ActivePeriphSwitch)
 	{
-		_ui_screen_change(&ui_ScrSwitch, LV_SCR_LOAD_ANIM_NONE, 50, 0, &ui_ScrSwitch_screen_init);
+		Ui_Switch_Loaded(e);
 	}
 }
 void Ui_Switch_Long(lv_event_t * e)
 {
 	if (ActivePeriphSwitch) ToggleSwitch(ActivePeriphSwitch);
+	lv_obj_clear_flag(ui_SpinnerSwitch, LV_OBJ_FLAG_HIDDEN);
 }
 void Ui_Switch_Prev(lv_event_t * e)
 {
@@ -742,8 +758,10 @@ void Ui_Switch_Prev(lv_event_t * e)
 	
 	if (ActivePeriphSwitch)
 	{
-		_ui_screen_change(&ui_ScrSwitch, LV_SCR_LOAD_ANIM_NONE, 50, 0, &ui_ScrSwitch_screen_init);
+		Ui_Switch_Loaded(e);
 	}
+
+
 }
 void Ui_Switch_Loaded(lv_event_t * e)
 {
@@ -756,15 +774,23 @@ void Ui_Switch_Loaded(lv_event_t * e)
 	{
 		Serial.println(ActivePeriphSwitch->GetName());
 		
+		if (ActivePeriphSwitch->GetValue() == 1)
+		{
+			lv_imgbtn_set_state(ui_ImgButtonSwitch, LV_IMGBTN_STATE_CHECKED_RELEASED);
+		}
+		else
+		{
+			lv_imgbtn_set_state(ui_ImgButtonSwitch, LV_IMGBTN_STATE_RELEASED);
+		}
+		
 		lv_label_set_text(ui_LblSwitchPeriph, ActivePeriphSwitch->GetName());
 		lv_label_set_text(ui_LblSwitchPeer, FindPeerById(ActivePeriphSwitch->GetPeerId())->GetName());
 	}
 	else
 	{
-		lv_obj_set_style_bg_img_src(ui_ScrSwitch, &ui_img_btn_off_png, LV_PART_MAIN | LV_STATE_DEFAULT);
-
 		lv_label_set_text(ui_LblSwitchPeriph, "n.n.");
 		lv_label_set_text(ui_LblSwitchPeer, "n.n.");
+		lv_imgbtn_set_state(ui_ImgButtonSwitch, LV_IMGBTN_STATE_RELEASED);
 	}
 
 	static uint32_t user_data = 10;
@@ -814,7 +840,7 @@ void Ui_PeriphChoice_Click(lv_event_t * e)
 {
 	Screen[ActiveMultiScreen].AddPeriph(MultiPosToChange, ActivePeriph);
 	Self.SetChanged(true);
-	_ui_screen_change(&ui_ScrMulti, LV_SCR_LOAD_ANIM_FADE_ON, 50, 0, &ui_ScrMulti_screen_init);
+	_ui_screen_change(&ui_ScrMulti, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrMulti_screen_init);
 }
 
 void Ui_Periph_Choice_Loaded(lv_event_t * e)
@@ -929,7 +955,7 @@ void Ui_Init_Custom(lv_event_t * e)
 void Keyboard_cb(lv_event_t * event)
 {
     CalibVolt();
-	_ui_screen_change(&ui_ScrMenu, LV_SCR_LOAD_ANIM_FADE_ON, 50, 0, &ui_ScrMenu_screen_init);
+	_ui_screen_change(&ui_ScrMenu, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrMenu_screen_init);
 }
 #pragma endregion System_TimerAndInit
 #pragma region System_Eichen
@@ -937,7 +963,7 @@ void Ui_Eichen_Start(lv_event_t * e)
 {
 	SendCommand(ActivePeer, SEND_CMD_CURRENT_CALIB);
 	TSMsgSnd = millis();
-	_ui_screen_change(&ui_ScrMenu, LV_SCR_LOAD_ANIM_FADE_ON, 50, 0, &ui_ScrMenu_screen_init);
+	_ui_screen_change(&ui_ScrMenu, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrMenu_screen_init);
 }
 
 void Ui_Volt_Prepare(lv_event_t * e)
@@ -947,7 +973,7 @@ void Ui_Volt_Prepare(lv_event_t * e)
 void Ui_Volt_Start(lv_event_t * e)
 {
 	CalibVolt();
-	_ui_screen_change(&ui_ScrMenu, LV_SCR_LOAD_ANIM_FADE_ON, 50, 0, &ui_ScrMenu_screen_init);
+	_ui_screen_change(&ui_ScrMenu, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrMenu_screen_init);
 }
 
 #pragma endregion System_Eichen
@@ -955,7 +981,7 @@ void Ui_Volt_Start(lv_event_t * e)
 void Ui_Periph_Choice_prepare(lv_event_t * e)
 {
 	if (!ActivePeriphSwitch) ActivePeriphSwitch = FindNextPeriph(NULL, NULL, SENS_TYPE_SWITCH, true);
-	if (ActivePeriphSwitch) _ui_screen_change(&ui_ScrSwitch, LV_SCR_LOAD_ANIM_FADE_ON, 50, 0, &ui_ScrSwitch_screen_init);
+	if (ActivePeriphSwitch) _ui_screen_change(&ui_ScrSwitch, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrSwitch_screen_init);
 }
 #pragma region Menu
 void Ui_Menu_Loaded(lv_event_t * e)
@@ -967,12 +993,12 @@ void Ui_Menu_Btn1_Clicked(lv_event_t * e)
 {
 	if (!ActivePeriphSingle) ActivePeriphSingle = FindFirstPeriph(NULL, SENS_TYPE_SENS);
 		
-	if (ActivePeriphSingle) _ui_screen_change(&ui_ScrSingle, LV_SCR_LOAD_ANIM_FADE_ON, 50, 0, &ui_ScrSingle_screen_init);
+	if (ActivePeriphSingle) _ui_screen_change(&ui_ScrSingle, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrSingle_screen_init);
 }
 
 void Ui_Menu_Btn2_Clicked(lv_event_t * e)
 {
 	if (!ActivePeriphSwitch) ActivePeriphSwitch = FindNextPeriph(NULL, NULL, SENS_TYPE_SWITCH, true);
-	if (ActivePeriphSwitch) _ui_screen_change(&ui_ScrSwitch, LV_SCR_LOAD_ANIM_FADE_ON, 50, 0, &ui_ScrSwitch_screen_init);
+	if (ActivePeriphSwitch) _ui_screen_change(&ui_ScrSwitch, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrSwitch_screen_init);
 }
 #pragma endregion Menu

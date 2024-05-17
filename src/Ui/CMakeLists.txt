@@ -27,6 +27,7 @@ SET(SOURCES components/ui_comp_buttonsensorsmall.c
     images/ui_img_horstrelais2_png.c
     images/ui_img_1253518904.c
     images/ui_img_rolfmodule_round_png.c
+    images/ui_img_btn_off_png.c
     images/ui_img_btn_png.c
     images/ui_img_1527887470.c
     images/ui_img_551600910.c)

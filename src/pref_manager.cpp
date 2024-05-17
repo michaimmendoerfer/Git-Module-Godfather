@@ -160,7 +160,7 @@ int GetPeers()
             Screen[s].Import(ScreenExportImportBuffer);
         }
     }
-    ReportAll();
+    //ReportAll();
     preferences.end();
 
     return PeerCount;
