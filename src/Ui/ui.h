@@ -92,8 +92,8 @@ void ui_ScrPeer_screen_init(void);
 void ui_event_ScrPeer(lv_event_t * e);
 extern lv_obj_t * ui_ScrPeer;
 extern lv_obj_t * ui_ImgPeerType;
-extern lv_obj_t * ui_LblPeerName;
 extern lv_obj_t * ui_LblPeerTypeLbl;
+extern lv_obj_t * ui_LblPeerName;
 void ui_event_BtnPeer1(lv_event_t * e);
 extern lv_obj_t * ui_BtnPeer1;
 void ui_event_BtnPeer1Lbl(lv_event_t * e);
@@ -113,14 +113,14 @@ extern lv_obj_t * ui_BtnPeer5Lbl1;
 void ui_event_BtnPeer6(lv_event_t * e);
 extern lv_obj_t * ui_BtnPeer6;
 extern lv_obj_t * ui_BtnPeer6Lbl1;
-extern lv_obj_t * ui_Image2;
-extern lv_obj_t * ui_Image3;
-extern lv_obj_t * ui_Image4;
-extern lv_obj_t * ui_Image5;
 void ui_event_BtnPeer7(lv_event_t * e);
 extern lv_obj_t * ui_BtnPeer7;
 void ui_event_BtnPeer7Lbl1(lv_event_t * e);
 extern lv_obj_t * ui_BtnPeer7Lbl1;
+extern lv_obj_t * ui_Image2;
+extern lv_obj_t * ui_Image3;
+extern lv_obj_t * ui_Image4;
+extern lv_obj_t * ui_Image5;
 // SCREEN: ui_ScrEichen
 void ui_ScrEichen_screen_init(void);
 void ui_event_ScrEichen(lv_event_t * e);
@@ -182,7 +182,6 @@ LV_IMG_DECLARE(ui_img_menubtn1_png);    // assets\MenuBtn1.png
 LV_IMG_DECLARE(ui_img_menubtn2_png);    // assets\MenuBtn2.png
 LV_IMG_DECLARE(ui_img_menubtn3_png);    // assets\MenuBtn3.png
 LV_IMG_DECLARE(ui_img_menubtn4_png);    // assets\MenuBtn4.png
-LV_IMG_DECLARE(ui_img_jeepifybackground_png);    // assets\JeepifyBackground.png
 LV_IMG_DECLARE(ui_img_ansgarmodule_4_png);    // assets\AnsgarModule_4.png
 LV_IMG_DECLARE(ui_img_friedermodule_disp_png);    // assets\FriederModule_Disp.png
 LV_IMG_DECLARE(ui_img_horstrelais2_png);    // assets\HorstRelais2.png

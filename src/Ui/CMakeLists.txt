@@ -21,7 +21,6 @@ SET(SOURCES components/ui_comp_buttonsensorsmall.c
     images/ui_img_menubtn2_png.c
     images/ui_img_menubtn3_png.c
     images/ui_img_menubtn4_png.c
-    images/ui_img_jeepifybackground_png.c
     images/ui_img_ansgarmodule_4_png.c
     images/ui_img_friedermodule_disp_png.c
     images/ui_img_horstrelais2_png.c

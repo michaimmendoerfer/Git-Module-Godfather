@@ -11,7 +11,7 @@ void ui_ScrVolt_screen_init(void)
     lv_obj_clear_flag(ui_ScrVolt, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_obj_set_style_bg_color(ui_ScrVolt, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_ScrVolt, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_img_src(ui_ScrVolt, &ui_img_jeepifybackground_png, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_img_src(ui_ScrVolt, &ui_img_576858027, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Keyboard = lv_keyboard_create(ui_ScrVolt);
     lv_keyboard_set_mode(ui_Keyboard, LV_KEYBOARD_MODE_USER_1);

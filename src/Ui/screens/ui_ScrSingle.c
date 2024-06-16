@@ -11,8 +11,8 @@ void ui_ScrSingle_screen_init(void)
     lv_obj_clear_flag(ui_ScrSingle, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_obj_set_style_bg_color(ui_ScrSingle, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_ScrSingle, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_img_src(ui_ScrSingle, &ui_img_jeepifybackground_png, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_img_opa(ui_ScrSingle, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_img_src(ui_ScrSingle, &ui_img_576858027, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_img_opa(ui_ScrSingle, 100, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_LblSinglePeer = lv_label_create(ui_ScrSingle);
     lv_obj_set_width(ui_LblSinglePeer, LV_SIZE_CONTENT);   /// 1

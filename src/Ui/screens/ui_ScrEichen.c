@@ -11,7 +11,7 @@ void ui_ScrEichen_screen_init(void)
     lv_obj_clear_flag(ui_ScrEichen, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_obj_set_style_bg_color(ui_ScrEichen, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_ScrEichen, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_img_src(ui_ScrEichen, &ui_img_jeepifybackground_png, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_img_src(ui_ScrEichen, &ui_img_576858027, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Label1 = lv_label_create(ui_ScrEichen);
     lv_obj_set_width(ui_Label1, LV_SIZE_CONTENT);   /// 1

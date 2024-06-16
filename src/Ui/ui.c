@@ -85,8 +85,8 @@ void ui_ScrPeer_screen_init(void);
 void ui_event_ScrPeer(lv_event_t * e);
 lv_obj_t * ui_ScrPeer;
 lv_obj_t * ui_ImgPeerType;
-lv_obj_t * ui_LblPeerName;
 lv_obj_t * ui_LblPeerTypeLbl;
+lv_obj_t * ui_LblPeerName;
 void ui_event_BtnPeer1(lv_event_t * e);
 lv_obj_t * ui_BtnPeer1;
 void ui_event_BtnPeer1Lbl(lv_event_t * e);
@@ -106,14 +106,14 @@ lv_obj_t * ui_BtnPeer5Lbl1;
 void ui_event_BtnPeer6(lv_event_t * e);
 lv_obj_t * ui_BtnPeer6;
 lv_obj_t * ui_BtnPeer6Lbl1;
-lv_obj_t * ui_Image2;
-lv_obj_t * ui_Image3;
-lv_obj_t * ui_Image4;
-lv_obj_t * ui_Image5;
 void ui_event_BtnPeer7(lv_event_t * e);
 lv_obj_t * ui_BtnPeer7;
 void ui_event_BtnPeer7Lbl1(lv_event_t * e);
 lv_obj_t * ui_BtnPeer7Lbl1;
+lv_obj_t * ui_Image2;
+lv_obj_t * ui_Image3;
+lv_obj_t * ui_Image4;
+lv_obj_t * ui_Image5;
 
 
 // SCREEN: ui_ScrEichen

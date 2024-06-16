@@ -12,7 +12,7 @@ void ui_ScrSwitch_screen_init(void)
     lv_obj_set_style_bg_color(ui_ScrSwitch, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_ScrSwitch, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_img_src(ui_ScrSwitch, &ui_img_576858027, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_img_opa(ui_ScrSwitch, 50, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_img_opa(ui_ScrSwitch, 100, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_ImgButtonSwitch = lv_imgbtn_create(ui_ScrSwitch);
     lv_imgbtn_set_src(ui_ImgButtonSwitch, LV_IMGBTN_STATE_RELEASED, NULL, &ui_img_btn_off_png, NULL);

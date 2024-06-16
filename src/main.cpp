@@ -484,10 +484,22 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len)
 
                         if ((strcmp(PName.c_str(), P->GetPeriphName(Si)) != 0) or (Type != P->GetPeriphType(Si)))
                         {
-                                P->PeriphSetup(Si, PName.c_str(), Type, false, false, 0, 0, 0, P->GetId());
-                                if (NewPeer) PeriphList.add(P->GetPeriphPtr(Si));
-                                SaveNeeded = true;
-                                if (Self.GetDebugMode()) Serial.printf("%s->Periph[%d].Name is now: %s\n", P->GetName(), Si, P->GetPeriphName(Si));
+                            P->PeriphSetup(Si, PName.c_str(), Type, false, false, 0, 0, 0, P->GetId());
+                            if (NewPeer) PeriphList.add(P->GetPeriphPtr(Si));
+                            SaveNeeded = true;
+                            if (Self.GetDebugMode()) Serial.printf("%s->Periph[%d].Name is now: %s\n", P->GetName(), Si, P->GetPeriphName(Si));
+                        }
+
+                        snprintf(Buf, sizeof(Buf), "B%d", Si);                      // get B0 (Brother of Periph 0)
+                        if (doc.containsKey(Buf)) 
+                        {
+                            int Brother = (int) doc[Buf];
+
+                            if (Brother !=  P->GetPeriphBrotherId(Si))
+                            {
+                                P->SetPeriphBrotherId(Si, Brother);
+                                if (Self.GetDebugMode()) Serial.printf("%s->Periph[%d].Brother is now: %d\n", P->GetName(), Si, P->GetPeriphBrotherId(Si));
+                            }
                         }
                     } 
                 }
@@ -600,6 +612,7 @@ void setup()
     ReportAll();
   
     smartdisplay_init();
+    smartdisplay_lcd_set_backlight(0.5);
     Serial.println("smartdisp.init fertig");
 
 __attribute__((unused)) auto disp = lv_disp_get_default();
@@ -756,7 +769,7 @@ void PrepareJSON() {
   if (jsondataBuf) {
     JsonDocument doc;
   
-    DeserializationError error = deserializeJson(doc, jsondataBuf);
+    __attribute__((unused)) DeserializationError error = deserializeJson(doc, jsondataBuf);
     if (doc["Node"] != NODE_NAME) { 
       lv_textarea_set_placeholder_text(ui_TxtJSON1, jsondataBuf.c_str());
       jsondataBuf = "";
