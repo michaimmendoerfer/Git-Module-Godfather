@@ -60,7 +60,7 @@ void Ui_Peer_Prepare()
 		lv_label_set_text_static(ui_LblPeerName, ActivePeer->GetName());
 		switch (ActivePeer->GetType())
 		{
-			case SWITCH_1_WAY:	 lv_img_set_src(ui_ImgPeerType, &ui_img_1253518904); break;
+			case SWITCH_1_WAY:	 lv_img_set_src(ui_ImgPeerType, &ui_img_1769637049); break;
 			case SWITCH_2_WAY:	 lv_img_set_src(ui_ImgPeerType, &ui_img_horstrelais2_png); break;
 			case SWITCH_4_WAY:	 lv_img_set_src(ui_ImgPeerType, &ui_img_ansgarmodule_4_png); break;
 			case MONITOR_ROUND:	 lv_img_set_src(ui_ImgPeerType, &ui_img_rolfmodule_round_png); break;
@@ -267,7 +267,9 @@ void Ui_Single_Next(lv_event_t * e)
 	
 	if (ActivePeriphSingle)
 	{
-		_ui_screen_change(&ui_ScrSingle, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrSingle_screen_init);
+		Ui_Single_Leave(e);
+		Ui_Single_Prepare(e);
+		//_ui_screen_change(&ui_ScrSingle, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrSingle_screen_init);
 	}
 }
 
@@ -280,7 +282,9 @@ void Ui_Single_Last(lv_event_t * e)
 	
 	if (ActivePeriphSingle)
 	{
-		_ui_screen_change(&ui_ScrSingle, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrSingle_screen_init);
+		Ui_Single_Leave(e);
+		Ui_Single_Prepare(e);
+		//_ui_screen_change(&ui_ScrSingle, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_ScrSingle_screen_init);
 	}
 }
 
@@ -341,7 +345,7 @@ void SingleUpdateTimer(lv_timer_t * timer)
 		value = ActivePeriphSingle->GetValue();
 		//if (DebugMode) Serial.printf("Sensor: %s: %f\n", ActiveSens->Name, value);
 
-		if      (value<10)  nk = 2;
+		if      (value<10)  nk = 1;
 		else if (value<100) nk = 1;
 		else                nk = 0;
 
@@ -393,17 +397,17 @@ void GenerateSingleMeter(void)
 	lv_obj_center(SingleMeter);
 	lv_obj_set_style_bg_color(SingleMeter, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
 	lv_obj_set_style_bg_opa(SingleMeter, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-	lv_obj_set_size(SingleMeter, 240,	240);
+	lv_obj_set_size(SingleMeter, 235,	235);
 	scale = lv_meter_add_scale(SingleMeter);
 	
-	lv_obj_move_background(SingleMeter);
-	lv_obj_set_style_text_color(SingleMeter, lv_color_hex(0xdbdbdb), LV_PART_TICKS);
+	//lv_obj_move_background(SingleMeter);
+	lv_obj_set_style_text_color(SingleMeter, lv_color_hex(0x000000), LV_PART_TICKS);
 	
-	SingleIndicNeedle = lv_meter_add_needle_line(SingleMeter, scale, 4, lv_palette_main(LV_PALETTE_GREY), -10);
+	SingleIndicNeedle = lv_meter_add_needle_line(SingleMeter, scale, 4, lv_color_hex(0x444444), -10);
 	
 	if ((ActivePeriphSingle) and (ActivePeriphSingle->GetType() == SENS_TYPE_AMP))
 	{
-		lv_meter_set_scale_ticks(SingleMeter, scale, 41, 2, 10, lv_palette_main(LV_PALETTE_GREY));
+		lv_meter_set_scale_ticks(SingleMeter, scale, 41, 3, 10, lv_palette_main(LV_PALETTE_GREY));
     	lv_meter_set_scale_major_ticks(SingleMeter, scale, 5, 4, 15, lv_color_black(), 15);
     	lv_meter_set_scale_range(SingleMeter, scale, 0, 400, 240, 150);
 	
@@ -426,7 +430,7 @@ void GenerateSingleMeter(void)
 	else if ((ActivePeriphSingle) and (ActivePeriphSingle->GetType() == SENS_TYPE_VOLT))
 	{	
 		lv_meter_set_scale_ticks(SingleMeter, scale, 31, 2, 10, lv_palette_main(LV_PALETTE_GREY));
-    	lv_meter_set_scale_major_ticks(SingleMeter, scale, 5, 4, 15, lv_color_black(), 15);
+    	lv_meter_set_scale_major_ticks(SingleMeter, scale, 5, 4, 20, lv_color_black(), 20);
     	lv_meter_set_scale_range(SingleMeter, scale, 90, 150, 240, 150);
 	
 		SingleIndic = lv_meter_add_scale_lines(SingleMeter, scale, lv_palette_main(LV_PALETTE_RED), lv_palette_main(LV_PALETTE_RED), false, 0);
@@ -916,6 +920,9 @@ void TopUpdateTimer(lv_timer_t * timer)
 
 void Ui_Init_Custom(lv_event_t * e)
 {
+	lv_obj_set_parent(ui_BtnNavIn, lv_layer_top());
+	lv_obj_set_parent(ui_NavPanel, lv_layer_top());
+	
 	//LED-Layer
 	static uint32_t user_data = 10; 
 	char LEDSize = 10;
@@ -923,18 +930,18 @@ void Ui_Init_Custom(lv_event_t * e)
 
 	Ui_LedRcv  = lv_led_create(lv_layer_top());
 	lv_obj_set_size(Ui_LedRcv, LEDSize, LEDSize);
-    lv_obj_align(Ui_LedRcv, LV_ALIGN_CENTER, 0, 110);
+    lv_obj_align(Ui_LedRcv, LV_ALIGN_CENTER, 440, 150);
     lv_led_set_color(Ui_LedRcv, lv_palette_main(LV_PALETTE_GREEN));
 	lv_led_off(Ui_LedRcv);
 
     Ui_LedSnd  = lv_led_create(lv_layer_top());
 	lv_obj_set_size(Ui_LedSnd, LEDSize, LEDSize);
-    lv_obj_align(Ui_LedSnd, LV_ALIGN_CENTER, -20, 107);
+    lv_obj_align(Ui_LedSnd, LV_ALIGN_CENTER, 420, 150);
     lv_led_set_color(Ui_LedSnd, lv_palette_main(LV_PALETTE_BLUE));
 
     Ui_LedPair  = lv_led_create(lv_layer_top());
     lv_obj_set_size(Ui_LedPair, LEDSize, LEDSize);
-	lv_obj_align(Ui_LedPair, LV_ALIGN_CENTER, 20, 107);
+	lv_obj_align(Ui_LedPair, LV_ALIGN_CENTER, 440, 150);
     lv_led_set_color(Ui_LedPair, lv_palette_main(LV_PALETTE_RED));
 
 	//Keyboard

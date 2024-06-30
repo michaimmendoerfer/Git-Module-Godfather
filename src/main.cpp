@@ -2,7 +2,7 @@
 #define NODE_TYPE MONITOR_BIG
 //#define KILL_NVS 1
 
-const char *_Version = "V 3.41";
+const char *_Version = "V 3.51";
 const char *_Name = "Monitor 1";
 const char _Protokoll_Version[] = "1.01";
 
@@ -525,7 +525,8 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len)
                 {
                     if (doc.containsKey((const char*)P->GetPeriphName(i))) {
                         float TempSensor = (float)doc[P->GetPeriphName(i)];
-                        
+                        if (abs(TempSensor) < 0.1) TempSensor = 0;
+
                         //Serial.print(P->GetPeriphName(i)); Serial.print(" found = "); Serial.println(TempSensor);
                         
                         if (TempSensor != P->GetPeriphValue(i)) {
@@ -615,7 +616,7 @@ void setup()
     smartdisplay_lcd_set_backlight(0.5);
     Serial.println("smartdisp.init fertig");
 
-__attribute__((unused)) auto disp = lv_disp_get_default();
+    __attribute__((unused)) auto disp = lv_disp_get_default();
     lv_disp_set_rotation(disp, LV_DISP_ROT_90);
     
     Serial.println("disp.init fertig");
