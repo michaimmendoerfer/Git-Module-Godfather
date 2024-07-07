@@ -38,6 +38,10 @@ lv_timer_t *SettingsTimer;
 
 bool SpinnerSwitchVisible = false;
 
+#define MAX_SWITCHES 4
+PeriphClass *SwitchArray[4] = {NULL, NULL, NULL, NULL};
+int FirstShownSwitch;
+
 LV_IMG_DECLARE(ui_img_btn_off_png);   
 LV_IMG_DECLARE(ui_img_btn_png);      
 
@@ -795,13 +799,37 @@ void Ui_Multi_Next(lv_event_t * e)
 {
 	ActiveMultiScreen++;
 	if (ActiveMultiScreen == MULTI_SCREENS) ActiveMultiScreen = 0;
-	_ui_screen_change(&ui_ScrMulti, LV_SCR_LOAD_ANIM_NONE, 0, 0, &ui_ScrMulti_screen_init);
+	Serial.printf("Schalte auf MultiScreen: %d\n\r", ActiveMultiScreen);
+	
+	for (int Pos = 0; Pos<PERIPH_PER_SCREEN; Pos++)
+	{
+		if (MultiComponent[Pos])
+		{
+			lv_obj_del(MultiComponent[Pos]);
+			MultiComponent[Pos] = NULL;
+		}
+	}
+
+	Ui_Multi_Loaded(e);
+	//_ui_screen_change(&ui_ScrMulti, LV_SCR_LOAD_ANIM_NONE, 0, 0, &ui_ScrMulti_screen_init);
 }
 void Ui_Multi_Prev(lv_event_t * e)
 {
 	ActiveMultiScreen--;
 	if (ActiveMultiScreen == -1) ActiveMultiScreen = MULTI_SCREENS-1;
-	_ui_screen_change(&ui_ScrMulti, LV_SCR_LOAD_ANIM_NONE, 0, 0, &ui_ScrMulti_screen_init);
+	Serial.printf("Schalte auf MultiScreen: %d\n\r", ActiveMultiScreen);
+	
+	for (int Pos = 0; Pos<PERIPH_PER_SCREEN; Pos++)
+	{
+		if (MultiComponent[Pos])
+		{
+			lv_obj_del(MultiComponent[Pos]);
+			MultiComponent[Pos] = NULL;
+		}
+	}
+	
+	Ui_Multi_Loaded(e);
+	//_ui_screen_change(&ui_ScrMulti, LV_SCR_LOAD_ANIM_NONE, 0, 0, &ui_ScrMulti_screen_init);
 }
 #pragma endregion Screen_MultiMeter
 #pragma region Screen_Switch
@@ -879,8 +907,6 @@ void Ui_Switch_Prev(lv_event_t * e)
 	{
 		Ui_Switch_Loaded(e);
 	}
-
-
 }
 void Ui_Switch_Loaded(lv_event_t * e)
 {
@@ -891,7 +917,24 @@ void Ui_Switch_Loaded(lv_event_t * e)
 	}	
 	if (ActivePeriphSwitch)
 	{
-		Serial.println(ActivePeriphSwitch->GetName());
+		PeerClass *P = FindPeerById(ActivePeriphSwitch->GetPeerId());
+		int NumberOfSwitches = P->GetNumberOf(SENS_TYPE_SWITCH);
+		PeriphClass *ActualSwitch = ActivePeriphSwitch;
+
+		for (int Pos = 0; Pos<MAX_SWITCHES; Pos++)
+		{
+			if (ActualSwitch) 
+			{
+				SwitchArray[Pos] = ActualSwitch;
+			}
+			else
+			{
+				SwitchArray[Pos] = NULL;
+			}
+			ActualSwitch = FindNextPeriph(P, ActualSwitch, SENS_TYPE_SWITCH, false);
+		}
+
+		//Serial.println(ActivePeriphSwitch->GetName());
 		
 		if (ActivePeriphSwitch->GetValue() == 1)
 		{
@@ -927,7 +970,6 @@ void Ui_Switch_Leave(lv_event_t * e)
 		lv_timer_del(SwitchTimer);
 		SwitchTimer = NULL;
 	}
-
 }
 #pragma endregion Screen_Switch
 #pragma region Screen_PeriphChoice
