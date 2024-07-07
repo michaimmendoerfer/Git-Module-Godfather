@@ -1,5 +1,4 @@
 SET(SOURCES components/ui_comp_buttonsensorsmall.c
-    components/ui_comp_buttonswitchsmall.c
     components/ui_comp.c
     screens/ui_ScrSingle.c
     screens/ui_ScrPeers.c
@@ -20,25 +19,25 @@ SET(SOURCES components/ui_comp_buttonsensorsmall.c
     images/ui_img_1464630232.c
     images/ui_img_1714525409.c
     images/ui_img_g3_png.c
-    images/ui_img_44778140.c
     images/ui_img_1156157770.c
     images/ui_img_546008632.c
     images/ui_img_215445388.c
+    images/ui_img_44778140.c
+    images/ui_img_694597045.c
+    images/ui_img_315456014.c
     images/ui_img_ansgarmodule_4_png.c
     images/ui_img_friedermodule_disp_png.c
     images/ui_img_horstrelais2_png.c
     images/ui_img_1769637049.c
     images/ui_img_rolfmodule_round_png.c
     images/ui_img_menubtn2_png.c
-    images/ui_img_1891462800.c
     images/ui_img_1134846501.c
     images/ui_img_1528892059.c
     images/ui_img_715952573.c
     images/ui_img_1562670045.c
     images/ui_img_587468927.c
     images/ui_img_menubtn1_png.c
-    images/ui_img_menubtn3_png.c
-    images/ui_img_menubtn4_png.c
+    images/ui_img_1891462800.c
     images/ui_img_410295087.c)
 
 add_library(ui ${SOURCES})

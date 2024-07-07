@@ -17,8 +17,8 @@ void ui_ScrSettings_screen_init(void)
     ui_BtnSet1 = lv_btn_create(ui_ScrSettings);
     lv_obj_set_width(ui_BtnSet1, 70);
     lv_obj_set_height(ui_BtnSet1, 30);
-    lv_obj_set_x(ui_BtnSet1, -194);
-    lv_obj_set_y(ui_BtnSet1, 24);
+    lv_obj_set_x(ui_BtnSet1, 0);
+    lv_obj_set_y(ui_BtnSet1, -90);
     lv_obj_set_align(ui_BtnSet1, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_BtnSet1, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
     lv_obj_clear_flag(ui_BtnSet1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
@@ -45,8 +45,8 @@ void ui_ScrSettings_screen_init(void)
     ui_BtnSet2 = lv_btn_create(ui_ScrSettings);
     lv_obj_set_width(ui_BtnSet2, 70);
     lv_obj_set_height(ui_BtnSet2, 30);
-    lv_obj_set_x(ui_BtnSet2, -194);
-    lv_obj_set_y(ui_BtnSet2, 60);
+    lv_obj_set_x(ui_BtnSet2, 80);
+    lv_obj_set_y(ui_BtnSet2, -90);
     lv_obj_set_align(ui_BtnSet2, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_BtnSet2, LV_OBJ_FLAG_CHECKABLE | LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
     lv_obj_clear_flag(ui_BtnSet2, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
@@ -81,8 +81,8 @@ void ui_ScrSettings_screen_init(void)
     ui_BtnSet3 = lv_btn_create(ui_ScrSettings);
     lv_obj_set_width(ui_BtnSet3, 70);
     lv_obj_set_height(ui_BtnSet3, 30);
-    lv_obj_set_x(ui_BtnSet3, 121);
-    lv_obj_set_y(ui_BtnSet3, -129);
+    lv_obj_set_x(ui_BtnSet3, 160);
+    lv_obj_set_y(ui_BtnSet3, -50);
     lv_obj_set_align(ui_BtnSet3, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_BtnSet3, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
     lv_obj_clear_flag(ui_BtnSet3, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
@@ -109,8 +109,8 @@ void ui_ScrSettings_screen_init(void)
     ui_BtnSet4 = lv_btn_create(ui_ScrSettings);
     lv_obj_set_width(ui_BtnSet4, 70);
     lv_obj_set_height(ui_BtnSet4, 30);
-    lv_obj_set_x(ui_BtnSet4, 44);
-    lv_obj_set_y(ui_BtnSet4, -128);
+    lv_obj_set_x(ui_BtnSet4, 80);
+    lv_obj_set_y(ui_BtnSet4, -50);
     lv_obj_set_align(ui_BtnSet4, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_BtnSet4, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
     lv_obj_clear_flag(ui_BtnSet4, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
@@ -137,7 +137,7 @@ void ui_ScrSettings_screen_init(void)
     ui_BtnSet5 = lv_btn_create(ui_ScrSettings);
     lv_obj_set_width(ui_BtnSet5, 70);
     lv_obj_set_height(ui_BtnSet5, 30);
-    lv_obj_set_x(ui_BtnSet5, -120);
+    lv_obj_set_x(ui_BtnSet5, 80);
     lv_obj_set_y(ui_BtnSet5, -130);
     lv_obj_set_align(ui_BtnSet5, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_BtnSet5, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
@@ -165,8 +165,8 @@ void ui_ScrSettings_screen_init(void)
     ui_BtnSet6 = lv_btn_create(ui_ScrSettings);
     lv_obj_set_width(ui_BtnSet6, 70);
     lv_obj_set_height(ui_BtnSet6, 30);
-    lv_obj_set_x(ui_BtnSet6, -196);
-    lv_obj_set_y(ui_BtnSet6, -129);
+    lv_obj_set_x(ui_BtnSet6, 0);
+    lv_obj_set_y(ui_BtnSet6, -130);
     lv_obj_set_align(ui_BtnSet6, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_BtnSet6, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
     lv_obj_clear_flag(ui_BtnSet6, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
@@ -191,8 +191,8 @@ void ui_ScrSettings_screen_init(void)
     ui_BtnSet7 = lv_btn_create(ui_ScrSettings);
     lv_obj_set_width(ui_BtnSet7, 70);
     lv_obj_set_height(ui_BtnSet7, 30);
-    lv_obj_set_x(ui_BtnSet7, -194);
-    lv_obj_set_y(ui_BtnSet7, 97);
+    lv_obj_set_x(ui_BtnSet7, 160);
+    lv_obj_set_y(ui_BtnSet7, -90);
     lv_obj_set_align(ui_BtnSet7, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_BtnSet7, LV_OBJ_FLAG_CHECKABLE | LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
     lv_obj_clear_flag(ui_BtnSet7, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
@@ -221,7 +221,7 @@ void ui_ScrSettings_screen_init(void)
     ui_BtnSet8 = lv_btn_create(ui_ScrSettings);
     lv_obj_set_width(ui_BtnSet8, 70);
     lv_obj_set_height(ui_BtnSet8, 30);
-    lv_obj_set_x(ui_BtnSet8, 200);
+    lv_obj_set_x(ui_BtnSet8, 160);
     lv_obj_set_y(ui_BtnSet8, -130);
     lv_obj_set_align(ui_BtnSet8, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_BtnSet8, LV_OBJ_FLAG_CHECKABLE | LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags

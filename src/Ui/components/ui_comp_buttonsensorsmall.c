@@ -13,19 +13,19 @@ lv_obj_t * ui_ButtonSensorSmall_create(lv_obj_t * comp_parent)
 
     lv_obj_t * cui_ButtonSensorSmall;
     cui_ButtonSensorSmall = lv_btn_create(comp_parent);
-    lv_obj_set_width(cui_ButtonSensorSmall, 90);
-    lv_obj_set_height(cui_ButtonSensorSmall, 90);
-    lv_obj_set_x(cui_ButtonSensorSmall, -45);
-    lv_obj_set_y(cui_ButtonSensorSmall, -45);
+    lv_obj_set_width(cui_ButtonSensorSmall, 120);
+    lv_obj_set_height(cui_ButtonSensorSmall, 120);
+    lv_obj_set_x(cui_ButtonSensorSmall, -79);
+    lv_obj_set_y(cui_ButtonSensorSmall, -51);
     lv_obj_set_align(cui_ButtonSensorSmall, LV_ALIGN_CENTER);
     lv_obj_add_flag(cui_ButtonSensorSmall, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
     lv_obj_clear_flag(cui_ButtonSensorSmall, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_radius(cui_ButtonSensorSmall, 50, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(cui_ButtonSensorSmall, 60, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(cui_ButtonSensorSmall, lv_color_hex(0x165420), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(cui_ButtonSensorSmall, 100, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_border_color(cui_ButtonSensorSmall, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_border_opa(cui_ButtonSensorSmall, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_border_width(cui_ButtonSensorSmall, 2, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(cui_ButtonSensorSmall, 1, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(cui_ButtonSensorSmall, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_spread(cui_ButtonSensorSmall, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_ofs_x(cui_ButtonSensorSmall, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -36,10 +36,10 @@ lv_obj_t * ui_ButtonSensorSmall_create(lv_obj_t * comp_parent)
     lv_obj_set_width(cui_LblSensSmallPeer, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(cui_LblSensSmallPeer, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(cui_LblSensSmallPeer, 0);
-    lv_obj_set_y(cui_LblSensSmallPeer, 25);
+    lv_obj_set_y(cui_LblSensSmallPeer, 35);
     lv_obj_set_align(cui_LblSensSmallPeer, LV_ALIGN_CENTER);
     lv_label_set_text(cui_LblSensSmallPeer, "Peer");
-    lv_obj_set_style_text_font(cui_LblSensSmallPeer, &lv_font_montserrat_10, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(cui_LblSensSmallPeer, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_t * cui_LblSensSmallPeriph;
     cui_LblSensSmallPeriph = lv_label_create(cui_ButtonSensorSmall);
@@ -47,22 +47,24 @@ lv_obj_t * ui_ButtonSensorSmall_create(lv_obj_t * comp_parent)
     lv_obj_set_height(cui_LblSensSmallPeriph, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(cui_LblSensSmallPeriph, LV_ALIGN_CENTER);
     lv_label_set_text(cui_LblSensSmallPeriph, "Periph");
+    lv_obj_set_style_text_font(cui_LblSensSmallPeriph, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_t * cui_LblSensSmallValue;
     cui_LblSensSmallValue = lv_label_create(cui_ButtonSensorSmall);
     lv_obj_set_width(cui_LblSensSmallValue, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(cui_LblSensSmallValue, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(cui_LblSensSmallValue, 0);
-    lv_obj_set_y(cui_LblSensSmallValue, -25);
+    lv_obj_set_y(cui_LblSensSmallValue, -35);
     lv_obj_set_align(cui_LblSensSmallValue, LV_ALIGN_CENTER);
     lv_label_set_text(cui_LblSensSmallValue, "value");
+    lv_obj_set_style_text_font(cui_LblSensSmallValue, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_t * cui_LblSensPos;
     cui_LblSensPos = lv_label_create(cui_ButtonSensorSmall);
     lv_obj_set_width(cui_LblSensPos, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(cui_LblSensPos, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(cui_LblSensPos, 25);
-    lv_obj_set_y(cui_LblSensPos, 18);
+    lv_obj_set_x(cui_LblSensPos, 32);
+    lv_obj_set_y(cui_LblSensPos, 23);
     lv_obj_set_align(cui_LblSensPos, LV_ALIGN_CENTER);
     lv_label_set_text(cui_LblSensPos, "P");
     lv_obj_set_style_text_color(cui_LblSensPos, lv_color_hex(0x808080), LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -70,25 +72,29 @@ lv_obj_t * ui_ButtonSensorSmall_create(lv_obj_t * comp_parent)
 
     lv_obj_t * cui_Arc2;
     cui_Arc2 = lv_arc_create(cui_ButtonSensorSmall);
-    lv_obj_set_width(cui_Arc2, 90);
-    lv_obj_set_height(cui_Arc2, 90);
+    lv_obj_set_width(cui_Arc2, 120);
+    lv_obj_set_height(cui_Arc2, 120);
     lv_obj_set_align(cui_Arc2, LV_ALIGN_CENTER);
     lv_obj_clear_flag(cui_Arc2, LV_OBJ_FLAG_CLICKABLE);      /// Flags
     lv_arc_set_value(cui_Arc2, 0);
-    lv_obj_set_style_arc_color(cui_Arc2, lv_color_hex(0x4A4A4A), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_arc_opa(cui_Arc2, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_arc_width(cui_Arc2, 4, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_object_set_themeable_style_property(cui_Arc2, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_ARC_COLOR,
+                                           _ui_theme_color_BtnBg);
+    ui_object_set_themeable_style_property(cui_Arc2, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_ARC_OPA,
+                                           _ui_theme_alpha_BtnBg);
+    lv_obj_set_style_arc_width(cui_Arc2, 6, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_set_style_arc_color(cui_Arc2, lv_color_hex(0x398F30), LV_PART_INDICATOR | LV_STATE_DEFAULT);
     lv_obj_set_style_arc_opa(cui_Arc2, 255, LV_PART_INDICATOR | LV_STATE_DEFAULT);
-    lv_obj_set_style_arc_width(cui_Arc2, 4, LV_PART_INDICATOR | LV_STATE_DEFAULT);
+    lv_obj_set_style_arc_width(cui_Arc2, 6, LV_PART_INDICATOR | LV_STATE_DEFAULT);
 
-    lv_obj_set_style_bg_color(cui_Arc2, lv_color_hex(0xDBDBDB), LV_PART_KNOB | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(cui_Arc2, 255, LV_PART_KNOB | LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_left(cui_Arc2, 0, LV_PART_KNOB | LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_right(cui_Arc2, 0, LV_PART_KNOB | LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_top(cui_Arc2, 0, LV_PART_KNOB | LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_bottom(cui_Arc2, 0, LV_PART_KNOB | LV_STATE_DEFAULT);
+    ui_object_set_themeable_style_property(cui_Arc2, LV_PART_KNOB | LV_STATE_DEFAULT, LV_STYLE_BG_COLOR,
+                                           _ui_theme_color_BtnSelected);
+    ui_object_set_themeable_style_property(cui_Arc2, LV_PART_KNOB | LV_STATE_DEFAULT, LV_STYLE_BG_OPA,
+                                           _ui_theme_alpha_BtnSelected);
+    lv_obj_set_style_pad_left(cui_Arc2, 2, LV_PART_KNOB | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(cui_Arc2, 2, LV_PART_KNOB | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(cui_Arc2, 2, LV_PART_KNOB | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(cui_Arc2, 2, LV_PART_KNOB | LV_STATE_DEFAULT);
 
     lv_obj_t ** children = lv_mem_alloc(sizeof(lv_obj_t *) * _UI_COMP_BUTTONSENSORSMALL_NUM);
     children[UI_COMP_BUTTONSENSORSMALL_BUTTONSENSORSMALL] = cui_ButtonSensorSmall;

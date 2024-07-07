@@ -1,8 +1,9 @@
 #define NODE_NAME "Monitor-1"
 #define NODE_TYPE MONITOR_BIG
+#define DEBUG_LEVEL 3
 //#define KILL_NVS 1
 
-const char *_Version = "V 3.51";
+const char *_Version = "V 3.61";
 const char *_Name = "Monitor 1";
 const char _Protokoll_Version[] = "1.01";
 
@@ -602,6 +603,16 @@ void setup()
     esp_now_register_recv_cb(OnDataRecv);    
 
     //Get saved Peers  
+    if (DEBUG_LEVEL > 0)                        // Show free entries
+    {
+        preferences.begin("JeepifyInit", true);
+            Serial.printf("free entries in JeepifyInit now: %d\n\r", preferences.freeEntries());
+        preferences.end();
+        preferences.begin("JeepifyPeers", true);
+            Serial.printf("free entries in JeepifyPeers now: %d\n\r", preferences.freeEntries());
+        preferences.end();
+    }
+
     preferences.begin("JeepifyInit", true);
         Self.SetDebugMode(preferences.getBool("DebugMode", true));
         Self.SetSleepMode(preferences.getBool("SleepMode", false));

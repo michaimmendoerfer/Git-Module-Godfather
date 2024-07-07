@@ -133,10 +133,48 @@ void ui_ScrMulti_screen_init(void)
     lv_label_set_text(ui_Label4, "+");
     lv_obj_set_style_text_font(ui_Label4, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
 
+    ui_BtnMultiLast = lv_btn_create(ui_ScrMulti);
+    lv_obj_set_width(ui_BtnMultiLast, 50);
+    lv_obj_set_height(ui_BtnMultiLast, 50);
+    lv_obj_set_x(ui_BtnMultiLast, 196);
+    lv_obj_set_y(ui_BtnMultiLast, 24);
+    lv_obj_set_align(ui_BtnMultiLast, LV_ALIGN_CENTER);
+    lv_obj_set_style_radius(ui_BtnMultiLast, 5, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_object_set_themeable_style_property(ui_BtnMultiLast, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BG_COLOR,
+                                           _ui_theme_color_BtnBg);
+    ui_object_set_themeable_style_property(ui_BtnMultiLast, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BG_OPA,
+                                           _ui_theme_alpha_BtnBg);
+    lv_obj_set_style_bg_img_src(ui_BtnMultiLast, &ui_img_694597045, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_object_set_themeable_style_property(ui_BtnMultiLast, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BORDER_COLOR,
+                                           _ui_theme_color_BtnBorder);
+    ui_object_set_themeable_style_property(ui_BtnMultiLast, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BORDER_OPA,
+                                           _ui_theme_alpha_BtnBorder);
+    lv_obj_set_style_border_width(ui_BtnMultiLast, 2, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_BtnMultiNext = lv_btn_create(ui_ScrMulti);
+    lv_obj_set_width(ui_BtnMultiNext, 50);
+    lv_obj_set_height(ui_BtnMultiNext, 50);
+    lv_obj_set_x(ui_BtnMultiNext, 197);
+    lv_obj_set_y(ui_BtnMultiNext, -45);
+    lv_obj_set_align(ui_BtnMultiNext, LV_ALIGN_CENTER);
+    lv_obj_set_style_radius(ui_BtnMultiNext, 5, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_object_set_themeable_style_property(ui_BtnMultiNext, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BG_COLOR,
+                                           _ui_theme_color_BtnBg);
+    ui_object_set_themeable_style_property(ui_BtnMultiNext, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BG_OPA,
+                                           _ui_theme_alpha_BtnBg);
+    lv_obj_set_style_bg_img_src(ui_BtnMultiNext, &ui_img_315456014, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_object_set_themeable_style_property(ui_BtnMultiNext, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BORDER_COLOR,
+                                           _ui_theme_color_BtnBorder);
+    ui_object_set_themeable_style_property(ui_BtnMultiNext, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BORDER_OPA,
+                                           _ui_theme_alpha_BtnBorder);
+    lv_obj_set_style_border_width(ui_BtnMultiNext, 2, LV_PART_MAIN | LV_STATE_DEFAULT);
+
     lv_obj_add_event_cb(ui_ButtonMulti1, ui_event_ButtonMulti1, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ButtonMulti2, ui_event_ButtonMulti2, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ButtonMulti3, ui_event_ButtonMulti3, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ButtonMulti4, ui_event_ButtonMulti4, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_BtnMultiLast, ui_event_BtnMultiLast, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_BtnMultiNext, ui_event_BtnMultiNext, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ScrMulti, ui_event_ScrMulti, LV_EVENT_ALL, NULL);
 
 }

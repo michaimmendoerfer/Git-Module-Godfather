@@ -45,14 +45,18 @@ extern lv_obj_t * ui_NavPanel;
 void ui_event_BtnNavMenu(lv_event_t * e);
 extern lv_obj_t * ui_BtnNavMenu;
 extern lv_obj_t * ui_LblBtnNavMenu;
-void ui_event_BtnNavSettings(lv_event_t * e);
-extern lv_obj_t * ui_BtnNavSettings;
 void ui_event_BtnNavSingle(lv_event_t * e);
 extern lv_obj_t * ui_BtnNavSingle;
 void ui_event_BtnNavMulti(lv_event_t * e);
 extern lv_obj_t * ui_BtnNavMulti;
 void ui_event_BtnNavSwitch(lv_event_t * e);
 extern lv_obj_t * ui_BtnNavSwitch;
+void ui_event_BtnNavSettings(lv_event_t * e);
+extern lv_obj_t * ui_BtnNavSettings;
+void ui_event_BtnSingleNext(lv_event_t * e);
+extern lv_obj_t * ui_BtnSingleNext;
+void ui_event_BtnSingleNext1(lv_event_t * e);
+extern lv_obj_t * ui_BtnSingleNext1;
 // SCREEN: ui_ScrPeers
 void ui_ScrPeers_screen_init(void);
 void ui_event_ScrPeers(lv_event_t * e);
@@ -100,6 +104,10 @@ extern lv_obj_t * ui_Image2;
 extern lv_obj_t * ui_Image3;
 extern lv_obj_t * ui_Image4;
 extern lv_obj_t * ui_Image5;
+void ui_event_BtnPeerNext(lv_event_t * e);
+extern lv_obj_t * ui_BtnPeerNext;
+void ui_event_BtnPeerLast(lv_event_t * e);
+extern lv_obj_t * ui_BtnPeerLast;
 // SCREEN: ui_ScrEichen
 void ui_ScrEichen_screen_init(void);
 extern lv_obj_t * ui_ScrEichen;
@@ -126,8 +134,10 @@ extern lv_obj_t * ui_LblPeriphChoicePeer;
 extern lv_obj_t * ui_LblPeriphChoiceType;
 extern lv_obj_t * ui_LblPeriphChoiceOnline;
 extern lv_obj_t * ui_LblPeriphChoicePeriph;
-extern lv_obj_t * ui_Button1;
-extern lv_obj_t * ui_Image1;
+void ui_event_BtnPeriphNext(lv_event_t * e);
+extern lv_obj_t * ui_BtnPeriphNext;
+void ui_event_BtnPeriphLast(lv_event_t * e);
+extern lv_obj_t * ui_BtnPeriphLast;
 // SCREEN: ui_ScrMulti
 void ui_ScrMulti_screen_init(void);
 void ui_event_ScrMulti(lv_event_t * e);
@@ -145,6 +155,10 @@ extern lv_obj_t * ui_Label3;
 void ui_event_ButtonMulti4(lv_event_t * e);
 extern lv_obj_t * ui_ButtonMulti4;
 extern lv_obj_t * ui_Label4;
+void ui_event_BtnMultiLast(lv_event_t * e);
+extern lv_obj_t * ui_BtnMultiLast;
+void ui_event_BtnMultiNext(lv_event_t * e);
+extern lv_obj_t * ui_BtnMultiNext;
 // SCREEN: ui_ScrSwitch
 void ui_ScrSwitch_screen_init(void);
 void ui_event_ScrSwitch(lv_event_t * e);
@@ -154,6 +168,11 @@ void ui_event_ImgButtonSwitch(lv_event_t * e);
 extern lv_obj_t * ui_ImgButtonSwitch;
 extern lv_obj_t * ui_LblSwitchPeer;
 extern lv_obj_t * ui_LblSwitchPeriph;
+void ui_event_BtnSwitchNext(lv_event_t * e);
+extern lv_obj_t * ui_BtnSwitchNext;
+void ui_event_BtnSwitchLast(lv_event_t * e);
+extern lv_obj_t * ui_BtnSwitchLast;
+extern lv_obj_t * ui_LblSwitchAmp;
 // SCREEN: ui_ScrSettings
 void ui_ScrSettings_screen_init(void);
 void ui_event_ScrSettings(lv_event_t * e);
@@ -189,25 +208,25 @@ extern lv_obj_t * ui____initial_actions0;
 LV_IMG_DECLARE(ui_img_1464630232);    // assets/BG-Gauge2.png
 LV_IMG_DECLARE(ui_img_1714525409);    // assets/bezel-silver-orig-300.png
 LV_IMG_DECLARE(ui_img_g3_png);    // assets/g3.png
-LV_IMG_DECLARE(ui_img_44778140);    // assets/settings-50.png
 LV_IMG_DECLARE(ui_img_1156157770);    // assets/gauge-50.png
 LV_IMG_DECLARE(ui_img_546008632);    // assets/multi-50.png
 LV_IMG_DECLARE(ui_img_215445388);    // assets/power-50.png
+LV_IMG_DECLARE(ui_img_44778140);    // assets/settings-50.png
+LV_IMG_DECLARE(ui_img_694597045);    // assets/arrow_down-50.png
+LV_IMG_DECLARE(ui_img_315456014);    // assets/arrow_up-50.png
 LV_IMG_DECLARE(ui_img_ansgarmodule_4_png);    // assets/AnsgarModule_4.png
 LV_IMG_DECLARE(ui_img_friedermodule_disp_png);    // assets/FriederModule_Disp.png
 LV_IMG_DECLARE(ui_img_horstrelais2_png);    // assets/HorstRelais2.png
 LV_IMG_DECLARE(ui_img_1769637049);    // assets/PeterRelais-1.png
 LV_IMG_DECLARE(ui_img_rolfmodule_round_png);    // assets/RolfModule_round.png
 LV_IMG_DECLARE(ui_img_menubtn2_png);    // assets/MenuBtn2.png
-LV_IMG_DECLARE(ui_img_1891462800);    // assets/silver-bezel-free-120.png
 LV_IMG_DECLARE(ui_img_1134846501);    // assets/kipp-1-off-120.png
 LV_IMG_DECLARE(ui_img_1528892059);    // assets/kipp-1-neutral-120.png
 LV_IMG_DECLARE(ui_img_715952573);    // assets/kipp-1-on-120.png
 LV_IMG_DECLARE(ui_img_1562670045);    // assets/Btn-small-off-100.png
 LV_IMG_DECLARE(ui_img_587468927);    // assets/Btn-small-on-100.png
 LV_IMG_DECLARE(ui_img_menubtn1_png);    // assets/MenuBtn1.png
-LV_IMG_DECLARE(ui_img_menubtn3_png);    // assets/MenuBtn3.png
-LV_IMG_DECLARE(ui_img_menubtn4_png);    // assets/MenuBtn4.png
+LV_IMG_DECLARE(ui_img_1891462800);    // assets/silver-bezel-free-120.png
 LV_IMG_DECLARE(ui_img_410295087);    // assets/switch-50.png
 
 
