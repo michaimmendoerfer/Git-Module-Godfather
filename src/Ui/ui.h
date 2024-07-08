@@ -166,13 +166,19 @@ extern lv_obj_t * ui_ScrSwitch;
 extern lv_obj_t * ui_SpinnerSwitch;
 void ui_event_ImgButtonSwitch(lv_event_t * e);
 extern lv_obj_t * ui_ImgButtonSwitch;
-extern lv_obj_t * ui_LblSwitchPeer;
 extern lv_obj_t * ui_LblSwitchPeriph;
+extern lv_obj_t * ui_LblSwitchAmp;
+extern lv_obj_t * ui_LblSwitchPeer;
 void ui_event_BtnSwitchNext(lv_event_t * e);
 extern lv_obj_t * ui_BtnSwitchNext;
 void ui_event_BtnSwitchLast(lv_event_t * e);
 extern lv_obj_t * ui_BtnSwitchLast;
-extern lv_obj_t * ui_LblSwitchAmp;
+void ui_event_ImgButtonSwitch1(lv_event_t * e);
+extern lv_obj_t * ui_ImgButtonSwitch1;
+void ui_event_ImgButtonSwitch2(lv_event_t * e);
+extern lv_obj_t * ui_ImgButtonSwitch2;
+void ui_event_ImgButtonSwitch3(lv_event_t * e);
+extern lv_obj_t * ui_ImgButtonSwitch3;
 // SCREEN: ui_ScrSettings
 void ui_ScrSettings_screen_init(void);
 void ui_event_ScrSettings(lv_event_t * e);
@@ -220,9 +226,9 @@ LV_IMG_DECLARE(ui_img_horstrelais2_png);    // assets/HorstRelais2.png
 LV_IMG_DECLARE(ui_img_1769637049);    // assets/PeterRelais-1.png
 LV_IMG_DECLARE(ui_img_rolfmodule_round_png);    // assets/RolfModule_round.png
 LV_IMG_DECLARE(ui_img_menubtn2_png);    // assets/MenuBtn2.png
-LV_IMG_DECLARE(ui_img_1134846501);    // assets/kipp-1-off-120.png
-LV_IMG_DECLARE(ui_img_1528892059);    // assets/kipp-1-neutral-120.png
-LV_IMG_DECLARE(ui_img_715952573);    // assets/kipp-1-on-120.png
+LV_IMG_DECLARE(ui_img_1640860301);    // assets/kipp-1-off-70.png
+LV_IMG_DECLARE(ui_img_743505413);    // assets/kipp-1-neutral-70.png
+LV_IMG_DECLARE(ui_img_888658411);    // assets/kipp-1-on-70.png
 LV_IMG_DECLARE(ui_img_1562670045);    // assets/Btn-small-off-100.png
 LV_IMG_DECLARE(ui_img_587468927);    // assets/Btn-small-on-100.png
 LV_IMG_DECLARE(ui_img_menubtn1_png);    // assets/MenuBtn1.png

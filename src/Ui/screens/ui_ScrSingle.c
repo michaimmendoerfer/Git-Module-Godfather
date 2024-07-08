@@ -75,8 +75,8 @@ void ui_ScrSingle_screen_init(void)
     ui_BtnNavIn = lv_btn_create(ui_ScrSingle);
     lv_obj_set_width(ui_BtnNavIn, 50);
     lv_obj_set_height(ui_BtnNavIn, 50);
-    lv_obj_set_x(ui_BtnNavIn, -211);
-    lv_obj_set_y(ui_BtnNavIn, -8);
+    lv_obj_set_x(ui_BtnNavIn, -212);
+    lv_obj_set_y(ui_BtnNavIn, 131);
     lv_obj_set_align(ui_BtnNavIn, LV_ALIGN_CENTER);
     lv_obj_set_style_radius(ui_BtnNavIn, 5, LV_PART_MAIN | LV_STATE_DEFAULT);
     ui_object_set_themeable_style_property(ui_BtnNavIn, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BG_COLOR,

@@ -162,13 +162,19 @@ lv_obj_t * ui_ScrSwitch;
 lv_obj_t * ui_SpinnerSwitch;
 void ui_event_ImgButtonSwitch(lv_event_t * e);
 lv_obj_t * ui_ImgButtonSwitch;
-lv_obj_t * ui_LblSwitchPeer;
 lv_obj_t * ui_LblSwitchPeriph;
+lv_obj_t * ui_LblSwitchAmp;
+lv_obj_t * ui_LblSwitchPeer;
 void ui_event_BtnSwitchNext(lv_event_t * e);
 lv_obj_t * ui_BtnSwitchNext;
 void ui_event_BtnSwitchLast(lv_event_t * e);
 lv_obj_t * ui_BtnSwitchLast;
-lv_obj_t * ui_LblSwitchAmp;
+void ui_event_ImgButtonSwitch1(lv_event_t * e);
+lv_obj_t * ui_ImgButtonSwitch1;
+void ui_event_ImgButtonSwitch2(lv_event_t * e);
+lv_obj_t * ui_ImgButtonSwitch2;
+void ui_event_ImgButtonSwitch3(lv_event_t * e);
+lv_obj_t * ui_ImgButtonSwitch3;
 
 
 // SCREEN: ui_ScrSettings
@@ -211,9 +217,6 @@ const lv_img_dsc_t * ui_imgset_25820555[1] = {&ui_img_587468927};
 const lv_img_dsc_t * ui_imgset_g[1] = {&ui_img_g3_png};
 const lv_img_dsc_t * ui_imgset_1573734952[1] = {&ui_img_1156157770};
 const lv_img_dsc_t * ui_imgset_horstrelais[1] = {&ui_img_horstrelais2_png};
-const lv_img_dsc_t * ui_imgset_1737837525[1] = {&ui_img_1528892059};
-const lv_img_dsc_t * ui_imgset_1014533431[1] = {&ui_img_1134846501};
-const lv_img_dsc_t * ui_imgset_201250811[1] = {&ui_img_715952573};
 const lv_img_dsc_t * ui_imgset_menubtn[2] = {&ui_img_menubtn1_png, &ui_img_menubtn2_png};
 const lv_img_dsc_t * ui_imgset_1017471526[1] = {&ui_img_546008632};
 const lv_img_dsc_t * ui_imgset_1265058017[1] = {&ui_img_1769637049};
@@ -221,6 +224,9 @@ const lv_img_dsc_t * ui_imgset_883720742[1] = {&ui_img_215445388};
 const lv_img_dsc_t * ui_imgset_1212679602[1] = {&ui_img_44778140};
 const lv_img_dsc_t * ui_imgset_162360510[1] = {&ui_img_1891462800};
 const lv_img_dsc_t * ui_imgset_46625239[1] = {&ui_img_410295087};
+const lv_img_dsc_t * ui_imgset_1014533431[1] = {&ui_img_1640860301};
+const lv_img_dsc_t * ui_imgset_201250811[1] = {&ui_img_888658411};
+const lv_img_dsc_t * ui_imgset_1737837525[1] = {&ui_img_743505413};
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
 #if LV_COLOR_DEPTH != 16
@@ -662,6 +668,30 @@ void ui_event_BtnSwitchLast(lv_event_t * e)
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
         Ui_Switch_Prev(e);
+    }
+}
+void ui_event_ImgButtonSwitch1(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        Ui_Switch_Long(e);
+    }
+}
+void ui_event_ImgButtonSwitch2(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        Ui_Switch_Long(e);
+    }
+}
+void ui_event_ImgButtonSwitch3(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        Ui_Switch_Long(e);
     }
 }
 void ui_event_ScrSettings(lv_event_t * e)
