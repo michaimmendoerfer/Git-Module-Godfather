@@ -63,7 +63,8 @@ void Ui_Multi_Sensor_Clicked(lv_event_t * e);
 #define UI_COMP_BUTTONSWITCHSMALL_LBLPERIPH 2
 #define UI_COMP_BUTTONSWITCHSMALL_LBLVALUE 3
 #define UI_COMP_BUTTONSWITCHSMALL_LBLPOSITION 4
-#define _UI_COMP_BUTTONSWITCHSMALL_NUM 5
+#define UI_COMP_BUTTONSWITCHSMALL_SPINNER 5
+#define _UI_COMP_BUTTONSWITCHSMALL_NUM 6
 lv_obj_t * ui_ButtonSwitchSmall_create(lv_obj_t * comp_parent, int x, int y, int Pos, char* PeerName, char *PeriphName);
 
 #pragma endregion Global_Definitions
@@ -178,12 +179,28 @@ lv_obj_t * ui_ButtonSwitchSmall_create(lv_obj_t * comp_parent, int x, int y, int
     lv_obj_set_style_text_color(cui_LblPosition, lv_color_hex(0xDBDBDB), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(cui_LblPosition, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
 
+	lv_obj_t *cui_SpinnerSwitch = lv_spinner_create(cui_ButtonSwitchSmall, 1000, 90);
+    lv_obj_set_width(cui_SpinnerSwitch, 100);
+    lv_obj_set_height(cui_SpinnerSwitch, 100);
+    lv_obj_set_align(cui_SpinnerSwitch, LV_ALIGN_CENTER);
+    lv_obj_add_flag(cui_SpinnerSwitch, LV_OBJ_FLAG_HIDDEN);     /// Flags
+    lv_obj_clear_flag(cui_SpinnerSwitch, LV_OBJ_FLAG_CLICKABLE);      /// Flags
+    lv_obj_set_style_arc_color(cui_SpinnerSwitch, lv_color_hex(0x83061F), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_arc_opa(cui_SpinnerSwitch, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_arc_width(cui_SpinnerSwitch, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_arc_width(cui_SpinnerSwitch, 5, LV_PART_MAIN | LV_STATE_CHECKED);
+
+    lv_obj_set_style_arc_color(cui_SpinnerSwitch, lv_color_hex(0x31020B), LV_PART_INDICATOR | LV_STATE_DEFAULT);
+    lv_obj_set_style_arc_opa(cui_SpinnerSwitch, 255, LV_PART_INDICATOR | LV_STATE_DEFAULT);
+    lv_obj_set_style_arc_width(cui_SpinnerSwitch, 5, LV_PART_INDICATOR | LV_STATE_CHECKED);
+
     lv_obj_t ** children = lv_mem_alloc(sizeof(lv_obj_t *) * _UI_COMP_BUTTONSWITCHSMALL_NUM);
     children[UI_COMP_BUTTONSWITCHSMALL_BUTTONSWITCHSMALL] = cui_ButtonSwitchSmall;
     children[UI_COMP_BUTTONSWITCHSMALL_LBLPEER] = cui_LblSwitchPeer;
     children[UI_COMP_BUTTONSWITCHSMALL_LBLPERIPH] = cui_LblSwitchPeriph;
     children[UI_COMP_BUTTONSWITCHSMALL_LBLVALUE] = cui_LblSwitchAmp;
     children[UI_COMP_BUTTONSWITCHSMALL_LBLPOSITION] = cui_LblPosition;
+	children[UI_COMP_BUTTONSWITCHSMALL_SPINNER] = cui_SpinnerSwitch;
     lv_obj_add_event_cb(cui_ButtonSwitchSmall, get_component_child_event_cb, LV_EVENT_GET_COMP_CHILD, children);
     lv_obj_add_event_cb(cui_ButtonSwitchSmall, del_component_child_event_cb, LV_EVENT_DELETE, children);
     //ui_comp_ButtonSwitchSmall_create_hook(cui_ButtonSwitchSmall);
@@ -881,6 +898,7 @@ void Ui_Multi_Prev(lv_event_t * e)
 #pragma region Screen_Switch
 void SwitchUpdateTimer(lv_timer_t * timer)
 {
+	Serial.println("Begin SwitchTimer");
 	for (int Pos = 0; Pos<MAX_SWITCHES; Pos++)
 	{
 		if (SwitchArray[Pos]) 
@@ -889,49 +907,49 @@ void SwitchUpdateTimer(lv_timer_t * timer)
 			{
 				lv_imgbtn_set_state(SwitchArraySwitches[Pos], LV_IMGBTN_STATE_CHECKED_RELEASED);
 			
-			//ggf show Sens-brother
+				//ggf show Sens-brother
 
-			lv_obj_t *BrotherValueLbl;
-			if (SwitchArray[Pos]->GetBrotherId() != -1)   
-			{
-				PeriphClass *Brother = FindPeriphById(SwitchArray[Pos]->GetBrotherId());
-				if (Brother)
+				lv_obj_t *BrotherValueLbl;
+				if (SwitchArray[Pos]->GetBrotherId() != -1)   
 				{
-					char buf[10];
-					int nk = 0;
-					float value = Brother->GetValue();
-					
-					if      (value<10)  nk = 2;
-					else if (value<100) nk = 1;
-					else                nk = 0;
+					PeriphClass *Brother = FindPeriphById(SwitchArray[Pos]->GetBrotherId());
+					if (Brother)
+					{
+						char buf[10];
+						int nk = 0;
+						float value = Brother->GetValue();
+						
+						if      (value<10)  nk = 2;
+						else if (value<100) nk = 1;
+						else                nk = 0;
 
-					if (value == -99) strcpy(buf, "--"); 
-					else dtostrf(value, 0, nk, buf);
+						if (value == -99) strcpy(buf, "--"); 
+						else dtostrf(value, 0, nk, buf);
 
-					strcat(buf, " A");
+						strcat(buf, " A");
 
-					BrotherValueLbl = ui_comp_get_child(SwitchArraySwitches[Pos], UI_COMP_BUTTONSWITCHSMALL_LBLVALUE);
-			
-					lv_label_set_text(BrotherValueLbl, buf);
-					lv_obj_clear_flag(BrotherValueLbl, LV_OBJ_FLAG_HIDDEN);
+						BrotherValueLbl = ui_comp_get_child(SwitchArraySwitches[Pos], UI_COMP_BUTTONSWITCHSMALL_LBLVALUE);
+				
+						lv_label_set_text(BrotherValueLbl, buf);
+						lv_obj_clear_flag(BrotherValueLbl, LV_OBJ_FLAG_HIDDEN);
+					}
+					else
+					{
+						lv_obj_add_flag(BrotherValueLbl, LV_OBJ_FLAG_HIDDEN);
+					}
 				}
-				else
-				{
-					lv_obj_add_flag(BrotherValueLbl, LV_OBJ_FLAG_HIDDEN);
-				}
-			}
 			}
 			else
 			{
 				lv_imgbtn_set_state(SwitchArraySwitches[Pos], LV_IMGBTN_STATE_RELEASED);
 			}
+			
+			if (SwitchArray[Pos]->GetChanged() == false)
+			{
+				//lv_obj_add_flag(ui_comp_get_child(SwitchArraySwitches[Pos], UI_COMP_BUTTONSWITCHSMALL_SPINNER), LV_OBJ_FLAG_HIDDEN);
+			}
 		}
-		/*
-		if (ActivePeriphSwitch->GetChanged() == false)
-		{
-			lv_obj_add_flag(ui_SpinnerSwitch, LV_OBJ_FLAG_HIDDEN);
-		}
-		*/
+		
 	}
 }
 void Ui_Switch_Next(lv_event_t * e)
@@ -966,7 +984,7 @@ void Ui_Switch_Clicked(lv_event_t * e)
 		Serial.printf("Toggleswitch Pos:%d, PeerName:%s\n\r", SwitchArray[Pos]->GetPos(), FindPeerById(SwitchArray[Pos]->GetPeerId())->GetName());
     }	
 	
-	//lv_obj_clear_flag(ui_SpinnerSwitch, LV_OBJ_FLAG_HIDDEN);
+	lv_obj_clear_flag(ui_comp_get_child(target, UI_COMP_BUTTONSWITCHSMALL_SPINNER), LV_OBJ_FLAG_HIDDEN);
 }
 void Ui_Switch_Long(lv_event_t * e)
 {
@@ -1013,8 +1031,11 @@ void Ui_Switch_Loaded(lv_event_t * e)
 			if (ActualSwitch) 
 			{
 				SwitchArray[Pos] = ActualSwitch;
-				SwitchArraySwitches[Pos] = ui_ButtonSwitchSmall_create(ui_ScrMulti, x, 0, Pos, FindPeerById(SwitchArray[Pos]->GetPeerId())->GetName(), SwitchArray[Pos]->GetName());
+				Serial.printf("Switch %s found., Peer ist %s.\n\r", SwitchArray[Pos]->GetName(), FindPeerById(SwitchArray[Pos]->GetPeerId())->GetName());
+
+				SwitchArraySwitches[Pos] = ui_ButtonSwitchSmall_create(ui_ScrSwitch, x, 0, Pos, FindPeerById(SwitchArray[Pos]->GetPeerId())->GetName(), SwitchArray[Pos]->GetName());
 				lv_obj_add_event_cb(SwitchArraySwitches[Pos], Ui_Switch_Clicked, LV_EVENT_ALL, NULL);  
+				Serial.printf("Switch %d created.\n\r", Pos);
 			}
 			else
 			{
@@ -1026,7 +1047,7 @@ void Ui_Switch_Loaded(lv_event_t * e)
 				}
 
 			}
-			ActualSwitch = FindNextPeriph(NULL, ActualSwitch, SENS_TYPE_SWITCH, true);
+			ActualSwitch = FindNextPeriph(NULL, ActualSwitch, SENS_TYPE_SWITCH, false);
 		}
 	}
 	else

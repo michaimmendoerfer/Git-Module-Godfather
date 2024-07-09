@@ -159,22 +159,11 @@ lv_obj_t * ui_BtnMultiNext;
 void ui_ScrSwitch_screen_init(void);
 void ui_event_ScrSwitch(lv_event_t * e);
 lv_obj_t * ui_ScrSwitch;
-lv_obj_t * ui_SpinnerSwitch;
-void ui_event_ImgButtonSwitch(lv_event_t * e);
-lv_obj_t * ui_ImgButtonSwitch;
-lv_obj_t * ui_LblSwitchPeriph;
-lv_obj_t * ui_LblSwitchAmp;
 lv_obj_t * ui_LblSwitchPeer;
 void ui_event_BtnSwitchNext(lv_event_t * e);
 lv_obj_t * ui_BtnSwitchNext;
 void ui_event_BtnSwitchLast(lv_event_t * e);
 lv_obj_t * ui_BtnSwitchLast;
-void ui_event_ImgButtonSwitch1(lv_event_t * e);
-lv_obj_t * ui_ImgButtonSwitch1;
-void ui_event_ImgButtonSwitch2(lv_event_t * e);
-lv_obj_t * ui_ImgButtonSwitch2;
-void ui_event_ImgButtonSwitch3(lv_event_t * e);
-lv_obj_t * ui_ImgButtonSwitch3;
 
 
 // SCREEN: ui_ScrSettings
@@ -646,14 +635,6 @@ void ui_event_ScrSwitch(lv_event_t * e)
         Ui_Switch_Loaded(e);
     }
 }
-void ui_event_ImgButtonSwitch(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_CLICKED) {
-        Ui_Switch_Long(e);
-    }
-}
 void ui_event_BtnSwitchNext(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
@@ -668,30 +649,6 @@ void ui_event_BtnSwitchLast(lv_event_t * e)
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
         Ui_Switch_Prev(e);
-    }
-}
-void ui_event_ImgButtonSwitch1(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_CLICKED) {
-        Ui_Switch_Long(e);
-    }
-}
-void ui_event_ImgButtonSwitch2(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_CLICKED) {
-        Ui_Switch_Long(e);
-    }
-}
-void ui_event_ImgButtonSwitch3(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_CLICKED) {
-        Ui_Switch_Long(e);
     }
 }
 void ui_event_ScrSettings(lv_event_t * e)
