@@ -897,6 +897,7 @@ void Ui_Switch_Loaded(lv_event_t * e)
 				if (SwitchArraySwitches[Pos])
 				{
 					lv_obj_del(SwitchArraySwitches[Pos]);
+					lv_obj_del
 					SwitchArraySwitches[Pos] = NULL;
 
 					Serial.printf("Switch %d deleted.\n\r", Pos);
@@ -921,6 +922,8 @@ void Ui_Switch_Loaded(lv_event_t * e)
 }
 void Ui_Switch_Leave(lv_event_t * e)
 {
+	Serial.println("Switch_leave:");
+
 	if (SwitchTimer) 
 	{
 		lv_timer_del(SwitchTimer);
@@ -933,6 +936,8 @@ void Ui_Switch_Leave(lv_event_t * e)
 		{
 			lv_obj_del(SwitchArraySwitches[Pos]);
 			SwitchArraySwitches[Pos] = NULL;
+
+			Serial.printf("Switch %d deleted.\n\r", Pos);
 		}
 	}	
 }
