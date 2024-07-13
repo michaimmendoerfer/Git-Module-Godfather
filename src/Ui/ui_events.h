@@ -46,6 +46,7 @@ void Ui_Multi_Set_Panel4(lv_event_t * e);
 void Ui_Switch_Next(lv_event_t * e);
 void Ui_Switch_Prev(lv_event_t * e);
 void Ui_Switch_Loaded(lv_event_t * e);
+void Ui_Switch_Leave(lv_event_t * e);
 void Ui_Set_Prepare(lv_event_t * e);
 void Ui_Set_Leave(lv_event_t * e);
 void Ui_Set_WebSvr(lv_event_t * e);

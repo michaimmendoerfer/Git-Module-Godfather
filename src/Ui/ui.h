@@ -215,8 +215,6 @@ LV_IMG_DECLARE(ui_img_horstrelais2_png);    // assets/HorstRelais2.png
 LV_IMG_DECLARE(ui_img_1769637049);    // assets/PeterRelais-1.png
 LV_IMG_DECLARE(ui_img_rolfmodule_round_png);    // assets/RolfModule_round.png
 LV_IMG_DECLARE(ui_img_menubtn2_png);    // assets/MenuBtn2.png
-LV_IMG_DECLARE(ui_img_1562670045);    // assets/Btn-small-off-100.png
-LV_IMG_DECLARE(ui_img_587468927);    // assets/Btn-small-on-100.png
 LV_IMG_DECLARE(ui_img_menubtn1_png);    // assets/MenuBtn1.png
 LV_IMG_DECLARE(ui_img_1891462800);    // assets/silver-bezel-free-120.png
 LV_IMG_DECLARE(ui_img_410295087);    // assets/switch-50.png

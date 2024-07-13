@@ -473,11 +473,11 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len)
                 // Message-Bsp: "Node":"ESP32-1"; "T0":"1"; "N0":"Switch1"
                 for (int Si=0; Si<MAX_PERIPHERALS; Si++) {
                     snprintf(Buf, sizeof(Buf), "T%d", Si);                          // Check for T0 (Type of Periph 0)
-                    if (Self.GetDebugMode()) Serial.printf("Check Pairing for: %s", Buf);
+                    //if (Self.GetDebugMode()) Serial.printf("Check Pairing for: %s - ", Buf);
                     
                     if (doc.containsKey(Buf)) 
                     {
-                        if (Self.GetDebugMode()) Serial.printf("Pairing found: %s", Buf);       
+                        if (Self.GetDebugMode()) Serial.printf("found: %s\n\r", Buf);       
                         int  Type = doc[Buf];                                       // Set Periph[0].Type
 
                         snprintf(Buf, sizeof(Buf), "N%d", Si);                      // get N0 (Name of Periph 0)
@@ -488,7 +488,7 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len)
                             P->PeriphSetup(Si, PName.c_str(), Type, false, false, 0, 0, 0, P->GetId());
                             if (NewPeer) PeriphList.add(P->GetPeriphPtr(Si));
                             SaveNeeded = true;
-                            if (Self.GetDebugMode()) Serial.printf("%s->Periph[%d].Name is now: %s\n", P->GetName(), Si, P->GetPeriphName(Si));
+                            if (Self.GetDebugMode()) Serial.printf("%s->Periph[%d].Name is now: %s\n\r", P->GetName(), Si, P->GetPeriphName(Si));
                         }
 
                         snprintf(Buf, sizeof(Buf), "B%d", Si);                      // get B0 (Brother of Periph 0)
@@ -499,7 +499,7 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len)
                             if (Brother !=  P->GetPeriphBrotherId(Si))
                             {
                                 P->SetPeriphBrotherId(Si, Brother);
-                                if (Self.GetDebugMode()) Serial.printf("%s->Periph[%d].Brother is now: %d\n", P->GetName(), Si, P->GetPeriphBrotherId(Si));
+                                if (Self.GetDebugMode()) Serial.printf("%s->Periph[%d].Brother is now: %d\n\r", P->GetName(), Si, P->GetPeriphBrotherId(Si));
                             }
                         }
                     } 

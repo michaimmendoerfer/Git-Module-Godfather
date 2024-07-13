@@ -200,9 +200,6 @@ const lv_img_dsc_t * ui_imgset_ansgarmodule_[1] = {&ui_img_ansgarmodule_4_png};
 const lv_img_dsc_t * ui_imgset_683550019[1] = {&ui_img_694597045};
 const lv_img_dsc_t * ui_imgset_643149428[1] = {&ui_img_315456014};
 const lv_img_dsc_t * ui_imgset_1689556857[1] = {&ui_img_1714525409};
-const lv_img_dsc_t * ui_imgset_236161557[1] = {&ui_img_1464630232};
-const lv_img_dsc_t * ui_imgset_857919995[1] = {&ui_img_1562670045};
-const lv_img_dsc_t * ui_imgset_25820555[1] = {&ui_img_587468927};
 const lv_img_dsc_t * ui_imgset_g[1] = {&ui_img_g3_png};
 const lv_img_dsc_t * ui_imgset_1573734952[1] = {&ui_img_1156157770};
 const lv_img_dsc_t * ui_imgset_horstrelais[1] = {&ui_img_horstrelais2_png};
@@ -216,6 +213,7 @@ const lv_img_dsc_t * ui_imgset_46625239[1] = {&ui_img_410295087};
 const lv_img_dsc_t * ui_imgset_1014533431[1] = {&ui_img_1640860301};
 const lv_img_dsc_t * ui_imgset_201250811[1] = {&ui_img_888658411};
 const lv_img_dsc_t * ui_imgset_1737837525[1] = {&ui_img_743505413};
+const lv_img_dsc_t * ui_imgset_236161557[1] = {&ui_img_1464630232};
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
 #if LV_COLOR_DEPTH != 16
@@ -634,6 +632,9 @@ void ui_event_ScrSwitch(lv_event_t * e)
     if(event_code == LV_EVENT_SCREEN_LOADED) {
         Ui_Switch_Loaded(e);
     }
+    if(event_code == LV_EVENT_SCREEN_UNLOAD_START) {
+        Ui_Switch_Leave(e);
+    }
 }
 void ui_event_BtnSwitchNext(lv_event_t * e)
 {
@@ -752,8 +753,6 @@ void ui_init(void)
     ui_ScrEichen_screen_init();
     ui_ScrVolt_screen_init();
     ui_ScrPeriph_screen_init();
-    ui_ScrMulti_screen_init();
-    ui_ScrSwitch_screen_init();
     ui_ScrSettings_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
     lv_obj_add_event_cb(ui____initial_actions0, ui_event____initial_actions0, LV_EVENT_ALL, NULL);
