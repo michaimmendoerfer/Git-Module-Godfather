@@ -203,7 +203,6 @@ const lv_img_dsc_t * ui_imgset_1689556857[1] = {&ui_img_1714525409};
 const lv_img_dsc_t * ui_imgset_g[1] = {&ui_img_g3_png};
 const lv_img_dsc_t * ui_imgset_1573734952[1] = {&ui_img_1156157770};
 const lv_img_dsc_t * ui_imgset_horstrelais[1] = {&ui_img_horstrelais2_png};
-const lv_img_dsc_t * ui_imgset_menubtn[1] = {&ui_img_menubtn1_png};
 const lv_img_dsc_t * ui_imgset_1017471526[1] = {&ui_img_546008632};
 const lv_img_dsc_t * ui_imgset_1265058017[1] = {&ui_img_1769637049};
 const lv_img_dsc_t * ui_imgset_883720742[1] = {&ui_img_215445388};
@@ -313,6 +312,8 @@ void ui_event_BtnNavSingle(lv_event_t * e)
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
+        AnimNavOut_Animation(ui_NavPanel, 0);
+        _ui_flag_modify(ui_BtnNavIn, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
         _ui_screen_change(&ui_ScrSingle, LV_SCR_LOAD_ANIM_NONE, 0, 0, &ui_ScrSingle_screen_init);
     }
 }

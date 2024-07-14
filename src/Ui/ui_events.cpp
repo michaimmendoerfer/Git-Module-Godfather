@@ -1048,7 +1048,7 @@ void Ui_Periph_Choice_Loaded(lv_event_t * e)
 									lv_img_set_src(ui_ImgPeerChoice, &ui_img_485462261);
 									break;
 			case SENS_TYPE_VOLT:	lv_label_set_text(ui_LblPeriphChoiceType, "Volt-Sensor"); 
-									lv_img_set_src(ui_ImgPeerChoice, &ui_img_menubtn1_png);
+									lv_img_set_src(ui_ImgPeerChoice, &ui_img_485462261);
 									break;
 			default:				lv_label_set_text(ui_LblPeriphChoiceType, "unknown type"); break;
 		}

@@ -31,7 +31,6 @@ SET(SOURCES components/ui_comp_buttonsensorsmall.c
     images/ui_img_1769637049.c
     images/ui_img_rolfmodule_round_png.c
     images/ui_img_485462261.c
-    images/ui_img_menubtn1_png.c
     images/ui_img_1891462800.c
     images/ui_img_410295087.c
     images/ui_img_1640860301.c
