@@ -203,7 +203,7 @@ const lv_img_dsc_t * ui_imgset_1689556857[1] = {&ui_img_1714525409};
 const lv_img_dsc_t * ui_imgset_g[1] = {&ui_img_g3_png};
 const lv_img_dsc_t * ui_imgset_1573734952[1] = {&ui_img_1156157770};
 const lv_img_dsc_t * ui_imgset_horstrelais[1] = {&ui_img_horstrelais2_png};
-const lv_img_dsc_t * ui_imgset_menubtn[2] = {&ui_img_menubtn1_png, &ui_img_menubtn2_png};
+const lv_img_dsc_t * ui_imgset_menubtn[1] = {&ui_img_menubtn1_png};
 const lv_img_dsc_t * ui_imgset_1017471526[1] = {&ui_img_546008632};
 const lv_img_dsc_t * ui_imgset_1265058017[1] = {&ui_img_1769637049};
 const lv_img_dsc_t * ui_imgset_883720742[1] = {&ui_img_215445388};
@@ -214,6 +214,7 @@ const lv_img_dsc_t * ui_imgset_1014533431[1] = {&ui_img_1640860301};
 const lv_img_dsc_t * ui_imgset_201250811[1] = {&ui_img_888658411};
 const lv_img_dsc_t * ui_imgset_1737837525[1] = {&ui_img_743505413};
 const lv_img_dsc_t * ui_imgset_236161557[1] = {&ui_img_1464630232};
+const lv_img_dsc_t * ui_imgset_2039601555[1] = {&ui_img_485462261};
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
 #if LV_COLOR_DEPTH != 16

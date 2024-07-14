@@ -857,7 +857,8 @@ void Ui_Switch_Clicked(lv_event_t * e)
 
 		if (SwitchArraySpinners[Pos]) 
 		{
-			lv_obj_clear_flag(SwitchArraySpinners[Pos], LV_OBJ_FLAG_HIDDEN);
+			lv_obj_set_x(SwitchArraySpinners[Pos], lv_obj_get_x(SwitchArraySwitches[Pos])-(480-lv_obj_get_width(SwitchArraySwitches[Pos]))/2);
+    		lv_obj_clear_flag(SwitchArraySpinners[Pos], LV_OBJ_FLAG_HIDDEN);
 		}
 		else
 		{
@@ -881,6 +882,10 @@ void Ui_Switch_Prev(lv_event_t * e)
 			SwitchArray[Pos] = NULL;
 			if (SwitchArraySwitches[Pos])
 			{
+				lv_obj_add_flag(ui_comp_get_child(SwitchArraySwitches[Pos], UI_COMP_BUTTONSWITCHSMALL_LBLPEER),   LV_OBJ_FLAG_HIDDEN);
+				lv_obj_add_flag(ui_comp_get_child(SwitchArraySwitches[Pos], UI_COMP_BUTTONSWITCHSMALL_LBLPERIPH), LV_OBJ_FLAG_HIDDEN);
+				lv_obj_add_flag(ui_comp_get_child(SwitchArraySwitches[Pos], UI_COMP_BUTTONSWITCHSMALL_LBLVALUE),  LV_OBJ_FLAG_HIDDEN);
+				
 				lv_obj_del(SwitchArraySwitches[Pos]);
 				SwitchArraySwitches[Pos] = NULL;
 			}
@@ -1037,10 +1042,10 @@ void Ui_Periph_Choice_Loaded(lv_event_t * e)
 
 		switch (ActivePeriph->GetType()) {
 			case SENS_TYPE_SWITCH:	lv_label_set_text(ui_LblPeriphChoiceType, "Switch"); 
-									lv_img_set_src(ui_ImgPeerChoice, &ui_img_menubtn2_png);
+									lv_img_set_src(ui_ImgPeerChoice, &ui_img_1640860301);
 									break;
 			case SENS_TYPE_AMP:		lv_label_set_text(ui_LblPeriphChoiceType, "Amp-Sensor"); 
-									lv_img_set_src(ui_ImgPeerChoice, &ui_img_menubtn1_png);
+									lv_img_set_src(ui_ImgPeerChoice, &ui_img_485462261);
 									break;
 			case SENS_TYPE_VOLT:	lv_label_set_text(ui_LblPeriphChoiceType, "Volt-Sensor"); 
 									lv_img_set_src(ui_ImgPeerChoice, &ui_img_menubtn1_png);

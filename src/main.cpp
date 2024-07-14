@@ -588,7 +588,7 @@ void setup()
     
     WiFi.mode(WIFI_AP_STA);
     //ESP-Now
-    /*InitWebServer();
+    InitWebServer();
     if (WebServerActive) 
     {
             ActiveWebPeer = PeerList.get(0);
@@ -596,7 +596,7 @@ void setup()
             server.begin();
     }
     //WiFi.mode(WIFI_AP);
-    */
+    
     if (esp_now_init() != ESP_OK) { Serial.println("Error initializing ESP-NOW"); return; }
 
     esp_now_register_send_cb(OnDataSent);

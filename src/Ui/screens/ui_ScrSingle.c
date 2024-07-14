@@ -77,7 +77,7 @@ void ui_ScrSingle_screen_init(void)
     lv_obj_set_width(ui_BtnNavIn, 50);
     lv_obj_set_height(ui_BtnNavIn, 50);
     lv_obj_set_x(ui_BtnNavIn, -212);
-    lv_obj_set_y(ui_BtnNavIn, 131);
+    lv_obj_set_y(ui_BtnNavIn, 120);
     lv_obj_set_align(ui_BtnNavIn, LV_ALIGN_CENTER);
     lv_obj_set_style_radius(ui_BtnNavIn, 5, LV_PART_MAIN | LV_STATE_DEFAULT);
     ui_object_set_themeable_style_property(ui_BtnNavIn, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BG_COLOR,
@@ -118,7 +118,7 @@ void ui_ScrSingle_screen_init(void)
     lv_obj_set_width(ui_BtnNavMenu, 50);
     lv_obj_set_height(ui_BtnNavMenu, 50);
     lv_obj_set_x(ui_BtnNavMenu, 0);
-    lv_obj_set_y(ui_BtnNavMenu, -117);
+    lv_obj_set_y(ui_BtnNavMenu, 120);
     lv_obj_set_align(ui_BtnNavMenu, LV_ALIGN_CENTER);
     lv_obj_set_style_radius(ui_BtnNavMenu, 30, LV_PART_MAIN | LV_STATE_DEFAULT);
     ui_object_set_themeable_style_property(ui_BtnNavMenu, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BG_COLOR,
@@ -146,7 +146,7 @@ void ui_ScrSingle_screen_init(void)
     lv_obj_set_width(ui_BtnNavSingle, 50);
     lv_obj_set_height(ui_BtnNavSingle, 50);
     lv_obj_set_x(ui_BtnNavSingle, 0);
-    lv_obj_set_y(ui_BtnNavSingle, -62);
+    lv_obj_set_y(ui_BtnNavSingle, -120);
     lv_obj_set_align(ui_BtnNavSingle, LV_ALIGN_CENTER);
     lv_obj_set_style_radius(ui_BtnNavSingle, 30, LV_PART_MAIN | LV_STATE_DEFAULT);
     ui_object_set_themeable_style_property(ui_BtnNavSingle, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BG_COLOR,
@@ -164,7 +164,7 @@ void ui_ScrSingle_screen_init(void)
     lv_obj_set_width(ui_BtnNavMulti, 50);
     lv_obj_set_height(ui_BtnNavMulti, 50);
     lv_obj_set_x(ui_BtnNavMulti, 0);
-    lv_obj_set_y(ui_BtnNavMulti, -5);
+    lv_obj_set_y(ui_BtnNavMulti, -60);
     lv_obj_set_align(ui_BtnNavMulti, LV_ALIGN_CENTER);
     lv_obj_set_style_radius(ui_BtnNavMulti, 30, LV_PART_MAIN | LV_STATE_DEFAULT);
     ui_object_set_themeable_style_property(ui_BtnNavMulti, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BG_COLOR,
@@ -181,8 +181,6 @@ void ui_ScrSingle_screen_init(void)
     ui_BtnNavSwitch = lv_btn_create(ui_NavPanel);
     lv_obj_set_width(ui_BtnNavSwitch, 50);
     lv_obj_set_height(ui_BtnNavSwitch, 50);
-    lv_obj_set_x(ui_BtnNavSwitch, 0);
-    lv_obj_set_y(ui_BtnNavSwitch, 54);
     lv_obj_set_align(ui_BtnNavSwitch, LV_ALIGN_CENTER);
     lv_obj_set_style_radius(ui_BtnNavSwitch, 30, LV_PART_MAIN | LV_STATE_DEFAULT);
     ui_object_set_themeable_style_property(ui_BtnNavSwitch, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BG_COLOR,
@@ -200,7 +198,7 @@ void ui_ScrSingle_screen_init(void)
     lv_obj_set_width(ui_BtnNavSettings, 50);
     lv_obj_set_height(ui_BtnNavSettings, 50);
     lv_obj_set_x(ui_BtnNavSettings, 0);
-    lv_obj_set_y(ui_BtnNavSettings, 115);
+    lv_obj_set_y(ui_BtnNavSettings, 60);
     lv_obj_set_align(ui_BtnNavSettings, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_BtnNavSettings, LV_OBJ_FLAG_OVERFLOW_VISIBLE);     /// Flags
     lv_obj_clear_flag(ui_BtnNavSettings,

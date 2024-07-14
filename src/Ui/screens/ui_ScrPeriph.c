@@ -15,7 +15,7 @@ void ui_ScrPeriph_screen_init(void)
     lv_obj_set_style_bg_img_opa(ui_ScrPeriph, 75, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_ImgPeerChoice = lv_img_create(ui_ScrPeriph);
-    lv_img_set_src(ui_ImgPeerChoice, &ui_img_menubtn2_png);
+    lv_img_set_src(ui_ImgPeerChoice, &ui_img_485462261);
     lv_obj_set_width(ui_ImgPeerChoice, LV_SIZE_CONTENT);   /// 60
     lv_obj_set_height(ui_ImgPeerChoice, LV_SIZE_CONTENT);    /// 79
     lv_obj_set_x(ui_ImgPeerChoice, -13);

@@ -214,7 +214,7 @@ LV_IMG_DECLARE(ui_img_friedermodule_disp_png);    // assets/FriederModule_Disp.p
 LV_IMG_DECLARE(ui_img_horstrelais2_png);    // assets/HorstRelais2.png
 LV_IMG_DECLARE(ui_img_1769637049);    // assets/PeterRelais-1.png
 LV_IMG_DECLARE(ui_img_rolfmodule_round_png);    // assets/RolfModule_round.png
-LV_IMG_DECLARE(ui_img_menubtn2_png);    // assets/MenuBtn2.png
+LV_IMG_DECLARE(ui_img_485462261);    // assets/Voltmeter-120.png
 LV_IMG_DECLARE(ui_img_menubtn1_png);    // assets/MenuBtn1.png
 LV_IMG_DECLARE(ui_img_1891462800);    // assets/silver-bezel-free-120.png
 LV_IMG_DECLARE(ui_img_410295087);    // assets/switch-50.png
