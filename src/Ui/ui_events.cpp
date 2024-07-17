@@ -145,6 +145,7 @@ void Ui_Peer_Prev(lv_event_t * e)
 void Ui_Peer_Delete(lv_event_t * e)
 {
 	if (ActivePeer) DeletePeer(ActivePeer);
+	_ui_screen_change(&ui_ScrPeers, LV_SCR_LOAD_ANIM_NONE, 0, 0, &ui_ScrPeers_screen_init);
 }
 #pragma endregion Screen_Peer
 #pragma region Screen_Settings
